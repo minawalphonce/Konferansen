@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-admin-firebase/package.json b/node_modules/react-admin-firebase/package.json
+index 5f6430d..71e6a50 100644
+--- a/node_modules/react-admin-firebase/package.json
++++ b/node_modules/react-admin-firebase/package.json
+@@ -56,7 +56,7 @@
+     "LICENSE",
+     "README.md"
+   ],
+-  "main": "dist/index.js",
++  "main": "dist/src/index.js",
+   "types": "dist/index.d.ts",
+   "umd:main": "dist/index.umd.js",
+   "source": "src/index.ts",
