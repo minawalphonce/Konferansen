@@ -2,7 +2,7 @@ import { Card, CardContent } from '@mui/material';
 import ChurchIcon from '@mui/icons-material/Church';
 import CategoryIcon from '@mui/icons-material/LocalOffer';
 import WcIcon from '@mui/icons-material/Wc';
-import { DatagridConfigurable, List, ChipField, TextField, SelectField, TopToolbar, SelectColumnsButton, FilterButton, TextInput, SavedQueriesList, FilterLiveSearch, FilterList, FilterListItem, useTranslate } from 'react-admin';
+import { DatagridConfigurable, List, ChipField, TextField, SelectField, TopToolbar, SelectColumnsButton, FilterButton, TextInput, SavedQueriesList, FilterLiveSearch, FilterList, FilterListItem, useTranslate, ImageField } from 'react-admin';
 
 
 const ListActions = () => (
@@ -58,3 +58,4 @@ export const MemberList = () => {
         </List>
     );
 }
+
