@@ -29,14 +29,15 @@ export type Tarnima = {
     image: keyof typeof images,
     id: string,
     name: string,
-    formatedText: Record<string, string[]> //lang : MD text
+
+    formatedText: Record<string, (string | Record<string, string>)[][]> //lang : MD text
     downloadLink?: string,
 }
 
 export type Memory = {
     title: string,
     reference: string,
-    formatedText: Record<string, string[]> //lang : MD text,
+    formatedText: Record<string, (string | Record<string, string>)[]> //lang : MD text,
 }
 
 export type FoodMenuItem = {
@@ -83,7 +84,7 @@ type AppStoreModel = {
     updateProfile: Action<AppStoreModel, MyProfile | null>,
     updateGroup: Action<AppStoreModel, Group["members"]>,
 
-    login: Thunk<AppStoreModel, { phone: string, code: string }>,
+    login: Thunk<AppStoreModel, { phone: string, pin: string }>,
     logout: Thunk<AppStoreModel>,
     unsubscribe: Thunk<AppStoreModel>,
 
@@ -130,8 +131,8 @@ const store = createStore<AppStoreModel>(
                 services.unsubscribe();
             }),
 
-            login: thunk(async (actions, { phone, code }) => {
-                const result = await services.login(phone, code);
+            login: thunk(async (actions, { phone, pin }) => {
+                const result = await services.login(phone, pin);
                 if (result.success) {
                     actions.updateProfile(result.data);
                     return null;

@@ -18,7 +18,10 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "app.konferansen.kk"
+      "bundleIdentifier": "app.konferansen.kk",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "app.konferansen.kk",

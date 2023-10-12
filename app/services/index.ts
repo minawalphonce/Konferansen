@@ -16,38 +16,23 @@ const firestore = getFirestore(app);
 
 const subscriptions: (() => void)[] = [];
 
-const login = async (phoneNumber: string, code: string) => {
-    const docRef = doc(firestore, "Members", code);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-        const data = docSnap.data() as any;
-        if (data.Phone === phoneNumber) {
-            return {
-                success: true,
-                data
-            }
-        }
-        else {
-            return {
-                "success": false,
-                "message": "invalid_phone"
-            }
+const login = async (phoneNumber: string, pin: string) => {
+    const collectionRef = collection(firestore, "Members");
+    const queryRef = query(collectionRef, where("phone", "==", phoneNumber), where("pin", "==", "pin"));
+    const docsSnap = await getDocs(queryRef);
+    if (docsSnap.size === 1) {
+        const data = docsSnap.docs[0].data() as any;
+        return {
+            success: true,
+            data
         }
     }
     else {
         return {
             "success": false,
-            "message": "invalid_code"
+            "message": "invalid_pin"
         }
     }
-    // const membersCol = collection(firestore, "Members");
-    // const q = query(membersCol,
-    //     where("Phone", "==", phoneNumber),
-    // )
-    // const docs = await getDocs(q);
-    // if (docs.size > 0) {
-
-    // }
 }
 
 const schedule = async (callback: (data: QuerySnapshot) => void) => {
