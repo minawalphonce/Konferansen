@@ -27,9 +27,10 @@ function Login() {
                         <Form yupRules={loginForm}>
                             <TextField name="phone" label="Phone" requiredIndicator keyboardType="phone-pad" />
                             <TextField name="code" label="Code" requiredIndicator keyboardType="default" />
-                            <SubmitField variant="round" onSubmit={async (values) => {
-                                await login(values);
-                                router.push("/(app)");
+                            <SubmitField variant="round" onSubmit={async (values: { phone: string, code: string }) => {
+                                const error = await login(values);
+                                if (!error)
+                                    router.push("/(app)/(tabs)/(home)");
                             }}>Login</SubmitField>
                         </Form>
                     </Box>

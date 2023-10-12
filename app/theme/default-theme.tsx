@@ -9,6 +9,14 @@ export const defaultTheme = createTheme({
     colors: {
         primary: "#2972FE",
         "primary.100": "#2972FE",
+        "primary.90": "rgba(41, 114, 254, 0.90)",
+        "primary.80": "rgba(41, 114, 254, 0.80)",
+        "primary.70": "rgba(41, 114, 254, 0.70)",
+        "primary.60": "rgba(41, 114, 254, 0.60)",
+        "primary.50": "rgba(41, 114, 254, 0.50)",
+        "primary.40": "rgba(41, 114, 254, 0.40)",
+        "primary.30": "rgba(41, 114, 254, 0.30)",
+        "primary.20": "rgba(41, 114, 254, 0.20)",
         "primary.10": "rgba(41, 114, 254, 0.10)",
 
         seconday: "#FFB800",
@@ -16,6 +24,15 @@ export const defaultTheme = createTheme({
 
         tertiary1: "#6D5FFD",
         "tertiary1.100": "#6D5FFD",
+        "tertiary1.90": "rgba(109, 95, 253, 0.90)",
+        "tertiary1.80": "rgba(109, 95, 253, 0.80)",
+        "tertiary1.70": "rgba(109, 95, 253, 0.70)",
+        "tertiary1.60": "rgba(109, 95, 253, 0.60)",
+        "tertiary1.50": "rgba(109, 95, 253, 0.50)",
+        "tertiary1.40": "rgba(109, 95, 253, 0.40)",
+        "tertiary1.30": "rgba(109, 95, 253, 0.30)",
+        "tertiary1.20": "rgba(109, 95, 253, 0.20)",
+        "tertiary1.10": "rgba(109, 95, 253, 0.10)",
 
         tertiary2: "#FF1843",
         "tertiary2.100": "#FF1843",
@@ -42,6 +59,7 @@ export const defaultTheme = createTheme({
         //#endregion
 
         "neutral.neutral8": "#EBEEF2",
+        "neutral.neutral4": "#6D7580",
         "neutral.black": "#09101D",
         "neutral.white": "#FFFFFF"
     },

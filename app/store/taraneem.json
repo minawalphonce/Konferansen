@@ -1,0 +1,164 @@
+[
+    {
+        "id": "1",
+        "name": "Ma a7la an nagtame3a ma3an",
+        "formatedText": {
+            "عربي": [
+                [
+                    {
+                        "fontWeight": "light",
+                        "textAlign": "right",
+                        "variant": "paragraphBase"
+                    },
+                    "ما احلي ان نجتمع معا بالحب يقول الرب لنا"
+                ],
+                [
+                    {
+                        "fontWeight": "light",
+                        "textAlign": "right",
+                        "variant": "paragraphBase"
+                    },
+                    "ما إجتمع بإسمي إثنان معا إلا و هناك اكون انا"
+                ],
+                [
+                    {
+                        "fontWeight": "heavy",
+                        "textAlign": "right",
+                        "variant": "paragraphLarge"
+                    },
+                    "يا رب تعالي الان هنا ندعوك تعالي و كن معنا "
+                ],
+                [
+                    {
+                        "fontWeight": "heavy",
+                        "textAlign": "right",
+                        "variant": "paragraphLarge"
+                    },
+                    "من روحك املأنا فرحا و سلاما لا يعطية غنا"
+                ],
+                [
+                    {
+                        "fontWeight": "light",
+                        "textAlign": "right",
+                        "variant": "paragraphBase"
+                    },
+                    "إذ انت لنا عوننا و سند في كل طريقا نسلكه"
+                ],
+                [
+                    {
+                        "fontWeight": "light",
+                        "textAlign": "right",
+                        "variant": "paragraphBase"
+                    },
+                    "و صديق ليس سواه نجد نعطية القلب نملكه"
+                ],
+                [
+                    {
+                        "fontWeight": "heavy",
+                        "textAlign": "right",
+                        "variant": "paragraphLarge"
+                    },
+                    "يا رب تعالي الان هنا ندعوك تعالي و كن معنا "
+                ],
+                [
+                    {
+                        "fontWeight": "heavy",
+                        "textAlign": "right",
+                        "variant": "paragraphLarge"
+                    },
+                    "من روحك املأنا فرحا و سلاما لا يعطية غنا"
+                ],
+                [
+                    {
+                        "fontWeight": "light",
+                        "textAlign": "right",
+                        "variant": "paragraphBase"
+                    },
+                    "الرب هنا دوما معنا ما أجمله ما أشبعنا "
+                ],
+                [
+                    {
+                        "fontWeight": "light",
+                        "textAlign": "right",
+                        "variant": "paragraphBase"
+                    },
+                    "سنكلمه و سيسمعنا و سيبقي لنا فينا معنا"
+                ],
+                [
+                    {
+                        "fontWeight": "heavy",
+                        "textAlign": "right",
+                        "variant": "paragraphLarge"
+                    },
+                    "يا رب تعالي الان هنا ندعوك تعالي و كن معنا "
+                ],
+                [
+                    {
+                        "fontWeight": "heavy",
+                        "textAlign": "right",
+                        "variant": "paragraphLarge"
+                    },
+                    "من روحك املأنا فرحا و سلاما لا يعطية غنا"
+                ]
+            ],
+            "franco-arab": [
+                "Ma a7la an nagtm3 ma3an bel 7ob yaqol el Rab lana",
+                "ma egtama3 be2esmy ethnan ma3an ela wa honak akon ana",
+                [
+                    {
+                        "fontWeight": "heavy",
+                        "textAlign": "left",
+                        "variant": "paragraphBase"
+                    },
+                    "Ya rab ta3ala alan hona nad3ok Ta3ala wa kon ma3ana"
+                ],
+                [
+                    {
+                        "fontWeight": "heavy",
+                        "textAlign": "left",
+                        "variant": "paragraphBase"
+                    },
+                    "men ro7ek emla2na fara7an wa salaman la yo3teh gehna"
+                ],
+                "ez enta lana 3awznon wa sanad fe kol tareken naslokaho",
+                "wa sadek lays sewah naged no3teh el qalb nomalekaho",
+                [
+                    {
+                        "fontWeight": "heavy",
+                        "textAlign": "left",
+                        "variant": "paragraphBase"
+                    },
+                    "Ya rab ta3ala alan hona nad3ok Ta3ala wa kon ma3ana"
+                ],
+                [
+                    {
+                        "fontWeight": "heavy",
+                        "textAlign": "left",
+                        "variant": "paragraphBase"
+                    },
+                    "men ro7ek emla2na fara7an wa salaman la yo3teh gehna"
+                ],
+                "al rab hona dawman ma3na ma agmalaho ma ashba3ana",
+                "sa nokalemaho wa sayasma3na wa saybka lana fena ma3na",
+                [
+                    {
+                        "fontWeight": "heavy",
+                        "textAlign": "left",
+                        "variant": "paragraphBase"
+                    },
+                    "Ya rab ta3ala alan hona nad3ok Ta3ala wa kon ma3ana"
+                ],
+                [
+                    {
+                        "fontWeight": "heavy",
+                        "textAlign": "left",
+                        "variant": "paragraphBase"
+                    },
+                    "men ro7ek emla2na fara7an wa salaman la yo3teh gehna"
+                ]
+            ]
+        },
+        "image": "ma-a7la",
+        "downloadLink": "https://docs.google.com/presentation/d/e/2PACX-1vTfK30HORrnVlhutkyxlvmQ-iXYRvOq8jsK-yoHJuZGrHVxv4bDUTsbIWcwvYkIMPBCZIOmNDzSDRpH/pub?start=false&loop=false&delayms=3000&slide=id.p"
+    }
+]

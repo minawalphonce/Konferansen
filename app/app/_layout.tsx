@@ -6,6 +6,7 @@ import { useStoreRehydrated } from 'easy-peasy';
 
 import { AppThemeProvider } from '../theme';
 import { AppStoreProvider } from '../store';
+import { Firebase } from '../components';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -46,11 +47,14 @@ function RootLayoutNav() {
 }
 
 function RootLayout() {
+  //reset the state for dev
+  //storage.clearAllData().then(storage.getAll);
   return (
     <AppStoreProvider>
       <AppThemeProvider>
         <RootLayoutNav />
       </AppThemeProvider>
+      <Firebase />
     </AppStoreProvider>
   );
 }

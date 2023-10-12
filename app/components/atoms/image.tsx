@@ -3,6 +3,7 @@ import { Image as RNImage, ImageProps as RNImageProps } from "react-native"
 import { Theme } from "../../theme";
 
 export type ImageProps =
+    RNImageProps &
     LayoutProps<Theme> &
     PositionProps<Theme> &
     OpacityProps<Theme> &
@@ -10,7 +11,7 @@ export type ImageProps =
     SpacingProps<Theme> &
     BorderProps<Theme> &
     ShadowProps<Theme> &
-    BackgroundColorProps<Theme> & RNImageProps
+    BackgroundColorProps<Theme>
 
 const imageRestyleFunctions = [
     layout,

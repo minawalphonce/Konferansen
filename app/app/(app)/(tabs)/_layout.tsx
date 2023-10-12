@@ -3,6 +3,7 @@ import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 
 import { Box, PressableBox, Text, Icon, IconProps } from "../../../components";
 
+
 const appTabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
     return (
         <Box
@@ -80,20 +81,20 @@ const tabBarIcon = (name: IconProps["name"]) => {
 
 export default function TabLayout() {
     return (
-        <Tabs screenOptions={{ headerShown: false }} tabBar={appTabBar}>
+        <Tabs initialRouteName="home" screenOptions={{ headerShown: false }} tabBar={appTabBar}>
             <Tabs.Screen name="(home)" options={{
                 title: "Home",
                 tabBarIcon: tabBarIcon("home")
             }} />
-            <Tabs.Screen name="(schedule)" options={{
+            <Tabs.Screen name="schedule" options={{
                 title: "Schedule",
                 tabBarIcon: tabBarIcon("calendar")
             }} />
-            <Tabs.Screen name="(taraneem)" options={{
+            <Tabs.Screen name="taraneem" options={{
                 title: "Taraneem",
                 tabBarIcon: tabBarIcon("headphones")
             }} />
-            <Tabs.Screen name="(memory)" options={{
+            <Tabs.Screen name="memory" options={{
                 title: "Memory",
                 tabBarIcon: tabBarIcon("bookmark")
             }} />

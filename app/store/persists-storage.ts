@@ -12,5 +12,8 @@ export const storage = {
     },
     removeItem(key: string) {
         AsyncStorage.removeItem(key)
+    },
+    async clearAllData() {
+        await AsyncStorage.clear();
     }
 }

@@ -2,7 +2,7 @@ import { Redirect, Stack } from 'expo-router';
 import { useAppStoreState } from '../../store';
 
 export default function AppLayout() {
-    const isAuthenticated = useAppStoreState(state => state.isAuthenticated);
+    const isAuthenticated = useAppStoreState(state => state.me !== null);
 
     // Only require authentication within the (app) group's layout as users
     // need to be able to access the (auth) group and sign in again.

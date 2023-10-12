@@ -1,11 +1,12 @@
-import { TouchableOpacityProps } from "react-native";
-import { LayoutProps, OpacityProps, PositionProps, SpacingProps, VariantProps, VisibleProps, composeRestyleFunctions, createVariant, useRestyle } from "@shopify/restyle";
-import { Text } from "./text";
-import { Theme, useAppTheme } from "../../theme";
 import { ReactNode } from "react";
-import { PressableBox } from "./pressable-box";
+import { TouchableOpacityProps } from "react-native";
+import { LayoutProps, OpacityProps, PositionProps, SpacingProps, VisibleProps } from "@shopify/restyle";
 
-const variantsMap = {
+import { Text, TextProps } from "./text";
+import { PressableBox, PressableBoxProps } from "./pressable-box";
+import { Theme } from "../../theme";
+
+const variantsMap: Record<string, { box: Partial<PressableBoxProps>, text: Partial<TextProps> }> = {
     filled: {
         box: {
             borderRadius: "lg",
@@ -85,7 +86,6 @@ export type ButtonProps =
     }
 
 export const Button = ({ children, suffix, prefix, variant = "filled", ...rest }: ButtonProps) => {
-    const theme = useAppTheme();
     return (
         <PressableBox flexDirection="row" gap="md" {...rest} {...variantsMap[variant].box}>
             {prefix}

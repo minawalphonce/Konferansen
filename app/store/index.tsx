@@ -1,22 +1,45 @@
 import { type PropsWithChildren } from "react";
 import {
-    type Computed, computed,
     type Action, action,
     type Thunk, thunk,
-    createStore, StoreProvider, persist, createTypedHooks
+    createStore, StoreProvider, persist, createTypedHooks, ActionOn
 } from "easy-peasy";
 
 import { storage } from "./persists-storage";
+import * as services from "../services";
 
-type ScheduleItem = {
-    date: Date,
-    from: number,
-    to: number,
-    item: string,
-    type: "food" | "location"
+import taraneem from "./taraneem.json";
+import memory from "./memory.json";
+import images from "../assets/images";
+
+let storeEnhancers: any[] = [];
+if (__DEV__) {
+    const reactotron = require("../reactoron").default;
+    storeEnhancers = [...storeEnhancers, reactotron.createEnhancer()];
 }
 
-type FoodMenuItem = {
+export type ScheduleItem = {
+    id: string,
+    from: Date,
+    to: Date,
+    details: string
+}
+
+export type Tarnima = {
+    image: keyof typeof images,
+    id: string,
+    name: string,
+    formatedText: Record<string, string[]> //lang : MD text
+    downloadLink?: string,
+}
+
+export type Memory = {
+    title: string,
+    reference: string,
+    formatedText: Record<string, string[]> //lang : MD text,
+}
+
+export type FoodMenuItem = {
     date: Date,
     order: number,
     title: "breakfast" | "lunch" | "dinner" | "fika",
@@ -25,7 +48,7 @@ type FoodMenuItem = {
     picture?: string
 }
 
-type Group = {
+export type Group = {
     id: number,
     color: string,
     members: {
@@ -34,7 +57,7 @@ type Group = {
     }[]
 }
 
-type MyProfile = {
+export type MyProfile = {
     id: string,
     name: string,
     phone: string,
@@ -50,67 +73,100 @@ type MyProfile = {
 type AppStoreModel = {
     schedule: ScheduleItem[],
     foodMenu: FoodMenuItem[],
+    taraneem: Tarnima[],
+    memory: Memory[],
     group: Group | null,
     me: MyProfile | null,
-
-    isAuthenticated: Computed<AppStoreModel, boolean>,
 
     updateSchedule: Action<AppStoreModel, ScheduleItem[]>,
     updateFoodMenu: Action<AppStoreModel, FoodMenuItem[]>,
     updateProfile: Action<AppStoreModel, MyProfile | null>,
     updateGroup: Action<AppStoreModel, Group["members"]>,
 
-    login: Thunk<AppStoreModel, { phoneNumber: string, code: string }>,
+    login: Thunk<AppStoreModel, { phone: string, code: string }>,
     logout: Thunk<AppStoreModel>,
+    unsubscribe: Thunk<AppStoreModel>,
+
+    subscribeToSchedule: Thunk<AppStoreModel>,
+    subscribeToGroup?: Thunk<AppStoreModel>,
+    subscribeToMe?: Thunk<AppStoreModel>,
 }
+const store = createStore<AppStoreModel>(
+    persist(
+        {
+            schedule: [],
+            foodMenu: [],
+            taraneem: taraneem as Tarnima[],
+            memory: memory as Memory[],
+            group: null,
+            me: null,
 
-const store = createStore<AppStoreModel>(persist({
-    schedule: [],
-    foodMenu: [],
-    group: null,
-    me: null,
+            //#region [actions]
+            updateSchedule: action((state, payload) => {
+                state.schedule = payload
+            }),
+            updateFoodMenu: action((state, payload) => {
+                state.foodMenu = payload
+            }),
+            updateProfile: action((state, payload) => {
+                state.me = payload;
+                if (payload !== null)
+                    state.group = {
+                        id: payload.groupId,
+                        color: payload.groupColorCode,
+                        members: [
+                            ...state.group?.members || []
+                        ]
+                    }
+                else
+                    state.group = null
+            }),
+            updateGroup: action((state, payload) => {
+                state.group!.members = payload
+            }),
+            //#endregion
 
-    //#region [compted]
-    isAuthenticated: computed(state => state.me !== null),
-    //#endregion
+            unsubscribe: thunk(() => {
+                services.unsubscribe();
+            }),
 
-    //#region [actions]
-    updateSchedule: action((state, payload) => {
-        state.schedule = payload
-    }),
-    updateFoodMenu: action((state, payload) => {
-        state.foodMenu = payload
-    }),
-    updateProfile: action((state, payload) => {
-        state.me = payload;
-        if (payload !== null)
-            state.group = {
-                id: payload.groupId,
-                color: payload.groupColorCode,
-                members: [
-                    ...state.group?.members || []
-                ]
-            }
-        else
-            state.group = null
-    }),
-    updateGroup: action((state, payload) => {
-        state.group!.members = payload
-    }),
-    //#endregion
+            login: thunk(async (actions, { phone, code }) => {
+                const result = await services.login(phone, code);
+                if (result.success) {
+                    actions.updateProfile(result.data);
+                    return null;
+                } else {
+                    return result.message;
+                }
+            }),
+            logout: thunk((actions) => {
+                actions.updateProfile(null);
+            }),
 
-    login: thunk((actions, { phoneNumber, code }) => {
-        //1. find firebase member by code and verify phone number 
-        //2. if yes login 
-        //3. if no then return error 
-    }),
-    logout: thunk((actions) => {
-        actions.updateProfile(null);
-    })
-}, {
-    "mergeStrategy": "overwrite",
-    "storage": storage
-}));
+            subscribeToSchedule: thunk((actions) => {
+                services.schedule((data) => {
+                    actions.updateSchedule(
+                        data.docs.filter(x => x.data().Details).map(doc => {
+                            const data = doc.data();
+                            return {
+                                id: doc.id,
+                                to: data.To.toDate(),
+                                from: data.From.toDate(),
+                                details: data.Details
+
+                            }
+                        })
+                    )
+                })
+            })
+        },
+        {
+            "storage": storage,
+            "allow": ["me"]
+        }),
+    {
+        enhancers: [...storeEnhancers]
+    });
 
 const typedHooks = createTypedHooks<AppStoreModel>();
 
