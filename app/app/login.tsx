@@ -1,5 +1,5 @@
 import { KeyboardAvoidingView } from "react-native";
-import { object, string } from "yup";
+import { number, object, string } from "yup";
 import { useRouter } from "expo-router";
 
 import { Screen, Box, Image, Text, Form, TextField, SubmitField } from "../components";
@@ -10,7 +10,7 @@ const particleImg = require("../assets/images/partials.png")
 
 const loginForm = object({
     "phone": string().required().matches(/[+]467\d{8}/, { "message": "phone number must start with +46" }),
-    "pin": string().required()
+    "pin": number().integer().required()
 })
 
 function Login() {
@@ -32,7 +32,7 @@ function Login() {
                                 <Form yupRules={loginForm}>
                                     <TextField name="phone" label="Phone" requiredIndicator keyboardType="phone-pad" />
                                     <TextField name="pin" label="Pin" requiredIndicator keyboardType="number-pad" />
-                                    <SubmitField variant="round" onSubmit={async (values: { phone: string, pin: string }) => {
+                                    <SubmitField variant="round" onSubmit={async (values: { phone: string, pin: number }) => {
                                         const error = await login(values);
                                         if (error) {
                                             alert(`Pin or phone number are not correct`)

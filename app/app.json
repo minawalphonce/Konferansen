@@ -17,11 +17,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "app.konferansen.kk",
       "config": {
         "usesNonExemptEncryption": false
-      }
+      },
+      "supportsTablet": false,
+      "bundleIdentifier": "app.konferansen.kk",
+      "buildNumber": "2"
     },
     "android": {
       "package": "app.konferansen.kk",
@@ -48,6 +49,12 @@
       "eas": {
         "projectId": "ed481166-df45-47b6-9337-ce803514ab2d"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/ed481166-df45-47b6-9337-ce803514ab2d"
     }
   }
 }

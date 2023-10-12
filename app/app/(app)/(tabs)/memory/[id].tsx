@@ -15,20 +15,15 @@ const Line = ({ children }: PropsWithChildren) => {
         return <Text >{children}{'\n'}</Text>
 }
 
-const TarneemaScreen = () => {
+const MemoryScreen = () => {
     const { id } = useLocalSearchParams();
-    const tarneema = useAppStoreState(state => state.taraneem.find(s => s.id === id));
+    const memory = useAppStoreState(state => state.memory.find(s => s.id === id));
     return (
         <Screen>
-            <Navbar title={tarneema?.name} showLogo={false} showBack={true} actions={[{
-                "icon": "download", "onPress": () => {
-                    if (tarneema?.downloadLink)
-                        Linking.openURL(tarneema?.downloadLink);
-                }
-            }]} />
+            <Navbar title={memory?.title} showLogo={false} showBack={true} />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Box flexDirection="row" gap="xl">
-                    {Object.entries(tarneema?.formatedText || {}).map(([key, lines]) => {
+                    {Object.entries(memory?.formatedText || {}).map(([key, lines]) => {
                         return (<Box flex={1} key={key}>
                             {lines.map((line, ndx) => <Line key={ndx}>{line as any}</Line>)}
                         </Box>)
@@ -38,4 +33,4 @@ const TarneemaScreen = () => {
         </Screen>)
 }
 
-export default TarneemaScreen
+export default MemoryScreen

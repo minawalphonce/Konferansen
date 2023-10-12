@@ -35,6 +35,7 @@ export type Tarnima = {
 }
 
 export type Memory = {
+    id: string,
     title: string,
     reference: string,
     formatedText: Record<string, (string | Record<string, string>)[]> //lang : MD text,
@@ -84,7 +85,7 @@ type AppStoreModel = {
     updateProfile: Action<AppStoreModel, MyProfile | null>,
     updateGroup: Action<AppStoreModel, Group["members"]>,
 
-    login: Thunk<AppStoreModel, { phone: string, pin: string }>,
+    login: Thunk<AppStoreModel, { phone: string, pin: number }>,
     logout: Thunk<AppStoreModel>,
     unsubscribe: Thunk<AppStoreModel>,
 

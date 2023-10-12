@@ -13,17 +13,18 @@ const ListItem = ({ from, to, details, index }: ScheduleItem & { index: number }
         start: from.getTime(),
         end: to.getTime()
     });
-    return (<Item borderWidth={isCurrent ? 1 : 0}>
-        <AvatarText variant={variant} textVariant="paragraphBase" fontWeight="heavy" text={format(from, "HH:mm")} />
-        <Box flexDirection="column" gap="sm">
-            <Text variant="paragraphBase" fontWeight="heavy">
-                {details}
-            </Text>
-            <Text variant="paragraphSmall" fontWeight="regular" color="neutral.neutral4">
-                {format(from, "HH:mm")} - {format(to, "HH:mm")}
-            </Text>
-        </Box>
-    </Item>)
+    return (
+        <Item borderWidth={isCurrent ? 1 : 0}>
+            <AvatarText variant={variant} textVariant="paragraphBase" fontWeight="heavy" text={format(from, "HH:mm")} />
+            <Box flexDirection="column" gap="sm">
+                <Text variant="paragraphBase" fontWeight="heavy">
+                    {details}
+                </Text>
+                <Text variant="paragraphSmall" fontWeight="regular" color="neutral.neutral4">
+                    {format(from, "HH:mm")} - {format(to, "HH:mm")}
+                </Text>
+            </Box>
+        </Item>)
 }
 
 export const ScheduleScreen = () => {
@@ -39,6 +40,7 @@ export const ScheduleScreen = () => {
     return (<Screen>
         <Navbar title="Schedule" showLogo />
         <SectionList
+            showsVerticalScrollIndicator={false}
             stickySectionHeadersEnabled={false}
             sections={days}
             keyExtractor={s => s.id}

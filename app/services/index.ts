@@ -16,10 +16,11 @@ const firestore = getFirestore(app);
 
 const subscriptions: (() => void)[] = [];
 
-const login = async (phoneNumber: string, pin: string) => {
+const login = async (phoneNumber: string, pin: number) => {
     const collectionRef = collection(firestore, "Members");
-    const queryRef = query(collectionRef, where("phone", "==", phoneNumber), where("pin", "==", "pin"));
+    const queryRef = query(collectionRef, where("Phone", "==", phoneNumber), where("Pin", "==", pin));
     const docsSnap = await getDocs(queryRef);
+    console.log("[]")
     if (docsSnap.size === 1) {
         const data = docsSnap.docs[0].data() as any;
         return {
