@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, query, where, collection, onSnapshot, getDocs, doc, getDoc, QuerySnapshot } from "firebase/firestore";
+import { getFirestore, query, where, collection, onSnapshot, getDocs, doc, getDoc, QuerySnapshot, DocumentSnapshot } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: process.env.EXPO_PUBLIC_apiKey,
@@ -25,7 +25,8 @@ const login = async (phoneNumber: string, pin: number) => {
         const data = docsSnap.docs[0].data() as any;
         return {
             success: true,
-            data
+            data,
+            id: docsSnap.docs[0].id
         }
     }
     else {
@@ -41,32 +42,28 @@ const schedule = async (callback: (data: QuerySnapshot) => void) => {
     const unsubscribe = onSnapshot(ref, (snapshot) => {
         callback(snapshot);
     });
-    subscriptions.push(unsubscribe);
+    return unsubscribe;
 };
 
-const unsubscribe = () => {
-    subscriptions.forEach(x => x());
-    subscriptions.splice(0);
+const profile = async (id: string, callback: (data: DocumentSnapshot) => void) => {
+    const ref = doc(firestore, "Members", id)
+    const unsubscribe = onSnapshot(ref, (snapshot) => {
+        callback(snapshot);
+    });
+    return unsubscribe;
 }
 
-// const group = async () => {
-//     const ref = collection(firestore, "Schedule");
-//     const unsubscribe = onSnapshot(ref, (snapshot) => {
-//         callback();
-//     });
-//     subscriptions.push(unsubscribe);
-// }
-
-// const me = async () => {
-//     const ref = collection(firestore, "Schedule");
-//     const unsubscribe = onSnapshot(ref, (snapshot) => {
-//         callback();
-//     });
-//     subscriptions.push(unsubscribe);
-// }
-
+const group = async (groupId: number, callback: (data: QuerySnapshot) => void) => {
+    const collectionRef = collection(firestore, "Members");
+    const queryRef = query(collectionRef, where("GroupId", "==", groupId));
+    const unsubscribe = onSnapshot(queryRef, (snapshot) => {
+        callback(snapshot);
+    });
+    return unsubscribe;
+}
 export {
     login,
     schedule,
-    unsubscribe
+    profile,
+    group
 }

@@ -9,10 +9,12 @@ export * from "./atoms/pressable-box";
 export * from "./atoms/button";
 export * from "./atoms/logo";
 export * from "./atoms/avatar"
+export * from "./atoms/profile";
 
 export * from "./molecules/field";
 export * from "./molecules/navbar";
 export * from "./molecules/item";
+export * from "./molecules/profile-card";
 
 export * from "./organism/form";
 

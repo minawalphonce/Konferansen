@@ -5,10 +5,11 @@ import { Text, TextProps } from "./text";
 
 export type AvatarIconProps = BoxProps & {
     name: IconProps["name"],
-    variant?: keyof Theme["colors"]
+    variant?: keyof Theme["colors"],
+    color?: keyof Theme["colors"],
 }
 
-export const AvatarIcon = ({ name, variant = "primary", ...rest }: AvatarIconProps) => {
+export const AvatarIcon = ({ name, variant = "primary", color = "neutral.white", ...rest }: AvatarIconProps) => {
     return (<Box
         backgroundColor={variant}
         width={60}
@@ -25,7 +26,7 @@ export const AvatarIcon = ({ name, variant = "primary", ...rest }: AvatarIconPro
         shadowRadius={2.54}
         elevation={5}
         {...rest} >
-        <Icon name={name} size="l" color="neutral.white" />
+        <Icon name={name} size="l" color={color} />
     </Box >)
 }
 

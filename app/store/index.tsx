@@ -11,12 +11,14 @@ import * as services from "../services";
 import taraneem from "./taraneem.json";
 import memory from "./memory.json";
 import images from "../assets/images";
+import { Unsubscribe } from "firebase/firestore";
 
 let storeEnhancers: any[] = [];
 if (__DEV__) {
     const reactotron = require("../reactoron").default;
     storeEnhancers = [...storeEnhancers, reactotron.createEnhancer()];
 }
+
 
 export type ScheduleItem = {
     id: string,
@@ -55,7 +57,7 @@ export type Group = {
     color: string,
     members: {
         name: string,
-        picture?: string
+        profile?: string
     }[]
 }
 
@@ -66,32 +68,35 @@ export type MyProfile = {
     gender: "M" | "F",
     churche: string,
     grade: string,
-    groupId: number,
-    groupColorCode: string,
-    picture: string,
-    roomId: string
+    groupId?: number,
+    groupColorText?: string,
+    groupColorCode?: string,
+    profile?: string,
+    roomId?: string,
+    building?: string,
+    room?: string,
+
 }
 
 type AppStoreModel = {
-    schedule: ScheduleItem[],
+    schedule: ScheduleItem[] | null,
     foodMenu: FoodMenuItem[],
     taraneem: Tarnima[],
     memory: Memory[],
     group: Group | null,
     me: MyProfile | null,
 
-    updateSchedule: Action<AppStoreModel, ScheduleItem[]>,
+    updateSchedule: Action<AppStoreModel, ScheduleItem[] | null>,
     updateFoodMenu: Action<AppStoreModel, FoodMenuItem[]>,
     updateProfile: Action<AppStoreModel, MyProfile | null>,
     updateGroup: Action<AppStoreModel, Group["members"]>,
 
     login: Thunk<AppStoreModel, { phone: string, pin: number }>,
     logout: Thunk<AppStoreModel>,
-    unsubscribe: Thunk<AppStoreModel>,
 
-    subscribeToSchedule: Thunk<AppStoreModel>,
-    subscribeToGroup?: Thunk<AppStoreModel>,
-    subscribeToMe?: Thunk<AppStoreModel>,
+    subscribeToSchedule: Thunk<AppStoreModel, void, void, any, Promise<Unsubscribe>>,
+    subscribeToProfile: Thunk<AppStoreModel, void, void, any, Promise<Unsubscribe>>,
+    subscribeToGroup: Thunk<AppStoreModel, void, void, any, Promise<Unsubscribe> | undefined>
 }
 const store = createStore<AppStoreModel>(
     persist(
@@ -114,28 +119,37 @@ const store = createStore<AppStoreModel>(
                 state.me = payload;
                 if (payload !== null)
                     state.group = {
-                        id: payload.groupId,
-                        color: payload.groupColorCode,
-                        members: [
-                            ...state.group?.members || []
-                        ]
+                        id: payload.groupId!,
+                        color: payload.groupColorText!,
+                        members: []
                     }
                 else
                     state.group = null
             }),
             updateGroup: action((state, payload) => {
-                state.group!.members = payload
+                if (state.group)
+                    state.group.members = payload
             }),
             //#endregion
-
-            unsubscribe: thunk(() => {
-                services.unsubscribe();
-            }),
 
             login: thunk(async (actions, { phone, pin }) => {
                 const result = await services.login(phone, pin);
                 if (result.success) {
-                    actions.updateProfile(result.data);
+                    actions.updateProfile({
+                        id: result.id!,
+                        grade: result.data.Grade,
+                        name: result.data.Name,
+                        gender: result.data.Gender,
+                        phone: result.data.Phone,
+                        groupId: result.data.GroupId,
+                        churche: result.data.Churche,
+                        groupColorCode: result.data.Color,
+                        groupColorText: result.data.Group,
+                        profile: result.data.Profile,
+                        roomId: result.data.RoomId,
+                        room: result.data.Room,
+                        building: result.data.Building
+                    });
                     return null;
                 } else {
                     return result.message;
@@ -143,10 +157,11 @@ const store = createStore<AppStoreModel>(
             }),
             logout: thunk((actions) => {
                 actions.updateProfile(null);
+                actions.updateSchedule(null);
             }),
 
             subscribeToSchedule: thunk((actions) => {
-                services.schedule((data) => {
+                return services.schedule((data) => {
                     actions.updateSchedule(
                         data.docs.filter(x => x.data().Details).map(doc => {
                             const data = doc.data();
@@ -160,11 +175,48 @@ const store = createStore<AppStoreModel>(
                         })
                     )
                 })
+            }),
+            subscribeToProfile: thunk((actions, _, helpers) => {
+                const meId = helpers.getState().me!.id;
+                return services.profile(meId, (result) => {
+                    const data = result.data()!;
+                    actions.updateProfile({
+                        id: result.id,
+                        grade: data.Grade,
+                        name: data.Name,
+                        gender: data.Gender,
+                        phone: data.Phone,
+                        groupId: data.GroupId,
+                        churche: data.Churche,
+                        groupColorCode: data.Color,
+                        groupColorText: data.Group,
+                        profile: data.Profile,
+                        roomId: data.RoomId,
+                        room: data.Room,
+                        building: data.Building
+                    })
+                })
+            }),
+            subscribeToGroup: thunk((actions, _, helpers) => {
+                const groupId = helpers.getState().me!.groupId;
+                if (groupId) {
+                    return services.group(
+                        groupId,
+                        (data) => {
+                            actions.updateGroup(data.docs.map(doc => {
+                                const data = doc.data();
+                                return {
+                                    "name": data.Name,
+                                    "profile": data.Profile
+                                }
+                            }))
+                        })
+                }
             })
         },
         {
             "storage": storage,
-            "allow": ["me"]
+            "allow": ["me", "group"]
         }),
     {
         enhancers: [...storeEnhancers]

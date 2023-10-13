@@ -1,12 +1,14 @@
 import { ReactNode } from "react";
 import { TouchableOpacityProps } from "react-native";
-import { LayoutProps, OpacityProps, PositionProps, SpacingProps, VisibleProps } from "@shopify/restyle";
+import { BackgroundColorProps, LayoutProps, OpacityProps, PositionProps, SpacingProps, VisibleProps } from "@shopify/restyle";
 
 import { Text, TextProps } from "./text";
 import { PressableBox, PressableBoxProps } from "./pressable-box";
 import { Theme } from "../../theme";
 
-const variantsMap: Record<string, { box: Partial<PressableBoxProps>, text: Partial<TextProps> }> = {
+type VariantStruct = { box: Partial<PressableBoxProps>, text: Partial<TextProps> };
+
+const variantsMap = {
     filled: {
         box: {
             borderRadius: "lg",
@@ -21,7 +23,7 @@ const variantsMap: Record<string, { box: Partial<PressableBoxProps>, text: Parti
             variant: "buttonLarge",
             fontWeight: "heavy"
         }
-    },
+    } as VariantStruct,
     ghost: {
         box: {
             borderRadius: "lg",
@@ -37,7 +39,7 @@ const variantsMap: Record<string, { box: Partial<PressableBoxProps>, text: Parti
             variant: "buttonLarge",
             fontWeight: "heavy"
         }
-    },
+    } as VariantStruct,
     borderless: {
         box: {
             borderWidth: 0,
@@ -51,7 +53,7 @@ const variantsMap: Record<string, { box: Partial<PressableBoxProps>, text: Parti
             variant: "buttonLarge",
             fontWeight: "heavy"
         }
-    },
+    } as VariantStruct,
     round: {
         box: {
             borderRadius: "circle",
@@ -66,12 +68,13 @@ const variantsMap: Record<string, { box: Partial<PressableBoxProps>, text: Parti
             variant: "buttonLarge",
             fontWeight: "heavy"
         }
-    }
+    } as VariantStruct
 }
 
 
 export type ButtonProps =
     TouchableOpacityProps &
+    BackgroundColorProps<Theme> &
     OpacityProps<Theme> &
     VisibleProps<Theme> &
     LayoutProps<Theme> &
@@ -87,7 +90,7 @@ export type ButtonProps =
 
 export const Button = ({ children, suffix, prefix, variant = "filled", ...rest }: ButtonProps) => {
     return (
-        <PressableBox flexDirection="row" gap="md" {...rest} {...variantsMap[variant].box}>
+        <PressableBox flexDirection="row" gap="md" {...variantsMap[variant].box} {...rest}>
             {prefix}
             <Text textAlign="center" {...variantsMap[variant].text}>
                 {children}
