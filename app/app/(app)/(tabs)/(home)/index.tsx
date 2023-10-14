@@ -1,8 +1,8 @@
 import { ScrollView, FlatList } from "react-native";
 import { Link } from "expo-router";
-import { format, isWithinInterval } from "date-fns";
+import { format, isAfter } from "date-fns";
 
-import { Button, Icon, ProfilePicture, Navbar, Screen, Box, Text, Image, AvatarIcon, ProfileCard, Item, AvatarText } from "../../../../components";
+import { Message, Button, Icon, ProfilePicture, Navbar, Screen, Box, Text, Image, AvatarIcon, ProfileCard, Item, AvatarText } from "../../../../components";
 import { MyProfile, useAppStoreActions, useAppStoreState } from "../../../../store";
 import images from "../../../../assets/images";
 
@@ -14,7 +14,7 @@ const MeBox = ({ profile, groupColorText, building, room, name, churche }: MyPro
             <Box flex={1} paddingHorizontal="xl" paddingVertical="md">
                 <Box justifyContent="center" flex={1}>
                     <Box paddingBottom="md">
-                        <Text variant="paragraphLarge" fontWeight="heavy">{name}</Text>
+                        <Text variant="paragraphBase" fontWeight="heavy">{name}</Text>
                     </Box>
                     {groupColorText && <Text variant="paragraphSmall" fontWeight="heavy">
                         Group {' '}
@@ -55,6 +55,16 @@ const ScoreBox = ({ }) => {
     </Box>)
 }
 
+const EmptyGroup = () => {
+    return (
+        <Box>
+            <Message variant="info" margin="lg" >
+                You are not assigned to group yet
+            </Message>
+        </Box>
+    );
+}
+
 const GroupBox = () => {
     const group = useAppStoreState(state => state.group)!;
     const me = useAppStoreState(state => state.me)!;
@@ -75,6 +85,7 @@ const GroupBox = () => {
                 <FlatList
                     showsHorizontalScrollIndicator={false}
                     contentContainerStyle={{ gap: 16 }}
+                    ListEmptyComponent={<EmptyGroup />}
                     horizontal={true}
                     data={members}
                     keyExtractor={item => item.name}
@@ -85,10 +96,9 @@ const GroupBox = () => {
 }
 
 const UpcommingBox = () => {
-    const currentItem = useAppStoreState(state => state.schedule?.find(item => isWithinInterval(Date.now(), {
-        start: item.from,
-        end: item.to
-    })));
+    const currentItem = useAppStoreState(state =>
+        state.schedule?.sort((a, b) => (a.from as any) - (b.from as any))
+            .filter(d => isAfter(d.from, new Date()))[0]);
     //const currentItem = useAppStoreState(state => state.schedule[0]);
     return (
         <Box paddingBottom="3xl">
@@ -98,21 +108,25 @@ const UpcommingBox = () => {
                 </Text>
                 <Link href="/(app)/(tabs)/schedule">
                     <Text variant="paragraphBase" fontWeight="heavy" color="primary">
-                        See All
+                        See Schedule
                     </Text>
                 </Link>
             </Box>
-            {currentItem && <Item>
+            {currentItem ? <Item>
                 <AvatarText variant="seconday" textVariant="paragraphBase" fontWeight="heavy" text={format(currentItem.from, "HH:mm")} />
                 <Box flexDirection="column" gap="sm">
                     <Text variant="paragraphBase" fontWeight="heavy">
                         {currentItem.details}
                     </Text>
                     <Text variant="paragraphSmall" fontWeight="regular" color="neutral.neutral4">
-                        {format(currentItem.from, "HH:mm")} - {format(currentItem.to, "HH:mm")}
+                        {format(currentItem.from, "EEEE")}  {format(currentItem.from, "HH:mm")} - {format(currentItem.to, "HH:mm")}
                     </Text>
                 </Box>
-            </Item>}
+            </Item> :
+                <Message variant="info" margin="lg">
+                    See your next Conference
+                </Message>
+            }
         </Box>)
 }
 
@@ -136,8 +150,8 @@ export const HomeScreen = () => {
                             Logout
                         </Button>
                     </Box>
-                </ScrollView>
-            </Screen>
+                </ScrollView >
+            </Screen >
         );
 
     return null;

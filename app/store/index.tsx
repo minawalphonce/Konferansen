@@ -219,6 +219,7 @@ const store = createStore<AppStoreModel>(
             "allow": ["me", "group"]
         }),
     {
+        version: 2,
         enhancers: [...storeEnhancers]
     });
 

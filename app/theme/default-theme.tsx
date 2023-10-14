@@ -107,7 +107,9 @@ export const defaultTheme = createTheme({
         s: 16,
         m: 24,
         l: 32,
-        xl: 64
+        xl: 64,
+        "2xl": 128,
+        "3xl": 256
     },
     textVariants: {
         defaults: {

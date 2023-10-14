@@ -22,7 +22,7 @@ const ListItem = ({ id, name, image }: Tarnima) => {
                         borderTopLeftRadius="lg"
                         borderBottomLeftRadius="lg" />
                 </Box>
-                <Box flex={2} justifyContent="center" alignItems="center">
+                <Box flex={2} justifyContent="center" alignItems="center" marginLeft="lg">
                     <Text variant="paragraphBase" fontWeight="heavy" ellipsizeMode="tail">
                         {name}
                     </Text>
@@ -40,6 +40,7 @@ export const TaraneemScreen = () => {
         <Screen>
             <Navbar title="Taraneem" showLogo />
             <FlatList
+                showsVerticalScrollIndicator={false}
                 data={taraneem}
                 keyExtractor={s => s.id}
                 renderItem={(data) => <ListItem  {...data.item} />} />

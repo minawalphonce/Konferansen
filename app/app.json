@@ -22,7 +22,7 @@
       },
       "supportsTablet": false,
       "bundleIdentifier": "app.konferansen.kk",
-      "buildNumber": "2"
+      "buildNumber": "3"
     },
     "android": {
       "package": "app.konferansen.kk",
@@ -37,7 +37,8 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "sentry-expo"
     ],
     "experiments": {
       "typedRoutes": true

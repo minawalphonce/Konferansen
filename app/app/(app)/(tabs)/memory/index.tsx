@@ -35,6 +35,7 @@ export const MemoryScreen = () => {
         <Screen>
             <Navbar title="Memory" showLogo />
             <FlatList
+                showsVerticalScrollIndicator={false}
                 data={memory}
                 keyExtractor={item => item.id}
                 renderItem={(data) => <ListItem {...data.item} />} />
