@@ -6,7 +6,7 @@ export default {
         "Members": {
             "name": "Members",
             "fields": {
-                "Name": "Name111",
+                "Name": "Name",
                 "Phone": "Phone",
                 "Churche": "Churche",
                 "Gender": "Gender",
@@ -15,12 +15,21 @@ export default {
                 "Bulding": "Bulding",
                 "Room": "Room"
             }
+        },
+        "ScoreLog": {
+            "name": "Score",
+            "fields": {
+
+            }
         }
     },
     "common": {
         "gender": {
             "male": "Boy |||| Boys",
             "female": "Girl |||| Girls"
-        }
+        },
+        "notifications": "Notifications",
+        "back": "Back To List",
+        "filters": "Filter"
     }
 }

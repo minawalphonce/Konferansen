@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "konferensen-platform"
+  },
+  "targets": {
+    "konferensen-platform": {
+      "hosting": {
+        "web": [
+          "konferensen-platform"
+        ],
+        "admin": [
+          "admin-konferensen-platform"
+        ]
+      }
+    }
   }
 }

@@ -29,12 +29,20 @@ export default {
                 "Bulding": "Byggnad",
                 "Room": "Rumsnummer"
             }
+        },
+        "ScoreLog": {
+            "name": "Poäng",
+            "fields": {
+            }
         }
     },
     "common": {
         "gender": {
             "male": "Kille |||| Killar",
             "female": "Tjej |||| Tjejer"
-        }
+        },
+        "notifications": "Aviseringar",
+        "back": "Tillbaka",
+        "filters": "Sök"
     }
 }
