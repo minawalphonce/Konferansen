@@ -4,35 +4,34 @@ import { useAppStoreActions, useAppStoreState } from "../store";
 export const Firebase = () => {
     const isAuthenticated = useAppStoreState(state => state.me !== null);
     const groupId = useAppStoreState(state => state.me?.groupId);
-    const [subscribeToSchedule, subscribeToProfile, subscribeToGroup] = useAppStoreActions(actions => [
+    const [subscribeToSchedule, subscribeToProfile, subscribeToGroup, subscribeToMyMemory] = useAppStoreActions(actions => [
         actions.subscribeToSchedule,
         actions.subscribeToProfile,
         actions.subscribeToGroup,
+        actions.subscribeToMyMemory
     ]);
 
     useEffect(() => {
         if (isAuthenticated) {
-            let unsbSchedule1: () => void;
-            let unsubProfile1: () => void;
-
-            Promise.all([subscribeToSchedule(), subscribeToProfile()]).then(([unsbSchedule, unsubProfile]) => {
-                unsbSchedule1 = unsbSchedule;
-                unsubProfile1 = unsubProfile;
-            })
+            const unsbSchedule = subscribeToSchedule();
+            const unsubProfile = subscribeToProfile();
+            const unsbMemory = subscribeToMyMemory();
 
             return () => {
-                unsbSchedule1();
-                unsubProfile1();
+                unsbSchedule();
+                unsubProfile();
+                if (unsbMemory)
+                    unsbMemory();
             }
         }
     }, [isAuthenticated]);
 
     useEffect(() => {
         if (isAuthenticated && groupId) {
-            let unsubGroup1: () => void;
-            subscribeToGroup()?.then((unsubGroup) => unsubGroup1 = unsubGroup)
+            const unsubGroup = subscribeToGroup();
             return () => {
-                unsubGroup1();
+                if (unsubGroup)
+                    unsubGroup();
             }
         }
     }, [isAuthenticated, groupId])

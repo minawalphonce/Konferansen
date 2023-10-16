@@ -19,7 +19,6 @@ if (__DEV__) {
     storeEnhancers = [...storeEnhancers, reactotron.createEnhancer()];
 }
 
-
 export type ScheduleItem = {
     id: string,
     from: Date,
@@ -32,25 +31,24 @@ export type Tarnima = {
     id: string,
     name: string,
 
-    formatedText: Record<string, (string | Record<string, string>)[][]> //lang : MD text
+    formatedText: Record<string, (string | Record<string, string>[])[]> //lang : MD text
     downloadLink?: string,
 }
 
 export type Memory = {
     id: string,
     title: string,
-    reference: string,
-    formatedText: Record<string, (string | Record<string, string>)[]> //lang : MD text,
+    formatedText: Record<string, (string | Record<string, string>[])[]> //lang : MD text,
 }
 
-export type FoodMenuItem = {
-    date: Date,
-    order: number,
-    title: "breakfast" | "lunch" | "dinner" | "fika",
-    name: string,
-    ingredients?: string,
-    picture?: string
-}
+// export type FoodMenuItem = {
+//     date: Date,
+//     order: number,
+//     title: "breakfast" | "lunch" | "dinner" | "fika",
+//     name: string,
+//     ingredients?: string,
+//     picture?: string
+// }
 
 export type Group = {
     id: number,
@@ -80,29 +78,30 @@ export type MyProfile = {
 
 type AppStoreModel = {
     schedule: ScheduleItem[] | null,
-    foodMenu: FoodMenuItem[],
+    myMemory: string[],
     taraneem: Tarnima[],
     memory: Memory[],
     group: Group | null,
     me: MyProfile | null,
 
     updateSchedule: Action<AppStoreModel, ScheduleItem[] | null>,
-    updateFoodMenu: Action<AppStoreModel, FoodMenuItem[]>,
     updateProfile: Action<AppStoreModel, MyProfile | null>,
     updateGroup: Action<AppStoreModel, Group["members"]>,
+    updateMyMemory: Action<AppStoreModel, string[]>,
 
     login: Thunk<AppStoreModel, { phone: string, pin: number }>,
     logout: Thunk<AppStoreModel>,
 
-    subscribeToSchedule: Thunk<AppStoreModel, void, void, any, Promise<Unsubscribe>>,
-    subscribeToProfile: Thunk<AppStoreModel, void, void, any, Promise<Unsubscribe>>,
-    subscribeToGroup: Thunk<AppStoreModel, void, void, any, Promise<Unsubscribe> | undefined>
+    subscribeToSchedule: Thunk<AppStoreModel, void, void, any, Unsubscribe>,
+    subscribeToProfile: Thunk<AppStoreModel, void, void, any, Unsubscribe>,
+    subscribeToGroup: Thunk<AppStoreModel, void, void, any, Unsubscribe | undefined>,
+    subscribeToMyMemory: Thunk<AppStoreModel, void, void, any, Unsubscribe | undefined>
 }
 const store = createStore<AppStoreModel>(
     persist(
         {
             schedule: [],
-            foodMenu: [],
+            myMemory: [],
             taraneem: taraneem as Tarnima[],
             memory: memory as Memory[],
             group: null,
@@ -111,9 +110,6 @@ const store = createStore<AppStoreModel>(
             //#region [actions]
             updateSchedule: action((state, payload) => {
                 state.schedule = payload
-            }),
-            updateFoodMenu: action((state, payload) => {
-                state.foodMenu = payload
             }),
             updateProfile: action((state, payload) => {
                 state.me = payload;
@@ -129,6 +125,9 @@ const store = createStore<AppStoreModel>(
             updateGroup: action((state, payload) => {
                 if (state.group)
                     state.group.members = payload
+            }),
+            updateMyMemory: action((state, payload) => {
+                state.myMemory = payload
             }),
             //#endregion
 
@@ -198,7 +197,7 @@ const store = createStore<AppStoreModel>(
                 })
             }),
             subscribeToGroup: thunk((actions, _, helpers) => {
-                const groupId = helpers.getState().me!.groupId;
+                const groupId = helpers.getState().me?.groupId;
                 if (groupId) {
                     return services.group(
                         groupId,
@@ -211,6 +210,14 @@ const store = createStore<AppStoreModel>(
                                 }
                             }))
                         })
+                }
+            }),
+            subscribeToMyMemory: thunk((actions, _, helpers) => {
+                const phoneNumber = helpers.getState().me?.phone;
+                if (phoneNumber) {
+                    return services.myMemory(phoneNumber, (items) => {
+                        actions.updateMyMemory(items.map(i => i.memoryId));
+                    });
                 }
             })
         },

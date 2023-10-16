@@ -14,8 +14,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
 
-const subscriptions: (() => void)[] = [];
-
 const login = async (phoneNumber: string, pin: number) => {
     const collectionRef = collection(firestore, "Members");
     const queryRef = query(collectionRef, where("Phone", "==", phoneNumber), where("Pin", "==", pin));
@@ -37,7 +35,7 @@ const login = async (phoneNumber: string, pin: number) => {
     }
 }
 
-const schedule = async (callback: (data: QuerySnapshot) => void) => {
+const schedule = (callback: (data: QuerySnapshot) => void) => {
     const ref = collection(firestore, "Schedule");
     const unsubscribe = onSnapshot(ref, (snapshot) => {
         callback(snapshot);
@@ -45,7 +43,7 @@ const schedule = async (callback: (data: QuerySnapshot) => void) => {
     return unsubscribe;
 };
 
-const profile = async (id: string, callback: (data: DocumentSnapshot) => void) => {
+const profile = (id: string, callback: (data: DocumentSnapshot) => void) => {
     const ref = doc(firestore, "Members", id)
     const unsubscribe = onSnapshot(ref, (snapshot) => {
         callback(snapshot);
@@ -53,7 +51,7 @@ const profile = async (id: string, callback: (data: DocumentSnapshot) => void) =
     return unsubscribe;
 }
 
-const group = async (groupId: number, callback: (data: QuerySnapshot) => void) => {
+const group = (groupId: number, callback: (data: QuerySnapshot) => void) => {
     const collectionRef = collection(firestore, "Members");
     const queryRef = query(collectionRef, where("GroupId", "==", groupId));
     const unsubscribe = onSnapshot(queryRef, (snapshot) => {
@@ -61,9 +59,23 @@ const group = async (groupId: number, callback: (data: QuerySnapshot) => void) =
     });
     return unsubscribe;
 }
+
+const myMemory = (
+    phone: string,
+    callback: (items: { memoryId: string }[]) => void
+) => {
+    const collRef = collection(firestore, "MemoryLog");
+    const queryRef = query(collRef, where("phone", "==", phone));
+    const unsb = onSnapshot(queryRef, (snapshot) => {
+        callback(snapshot.docs.map(item => item.data() as { memoryId: string }));
+    });
+    return unsb;
+}
+
 export {
     login,
     schedule,
     profile,
-    group
+    group,
+    myMemory
 }

@@ -5,6 +5,7 @@ import { Memory, useAppStoreState } from "../../../../store";
 
 
 const ListItem = ({ id, title }: Memory) => {
+    const isChecked = useAppStoreState(state => state.myMemory.includes(id));
     return (
         <Item shadowColor="neutral.black" borderColor="neutral.neutral8" borderWidth={1}
             onPress={() => {
@@ -14,9 +15,9 @@ const ListItem = ({ id, title }: Memory) => {
                 })
             }}>
             <Box flexDirection="row" gap="sm">
-                {/* <Box>
-                    <Icon name="circle" color="status.success" />
-                </Box> */}
+                <Box>
+                    <Icon name={isChecked ? "check-circle-o" : "circle-o"} color="primary" />
+                </Box>
                 <Box flex={2} justifyContent="center" alignItems="center">
                     <Text variant="paragraphBase" fontWeight="heavy" ellipsizeMode="tail">
                         {title}
