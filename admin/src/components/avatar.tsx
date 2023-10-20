@@ -19,9 +19,11 @@ export const AvatarField = ({ source, emptyText = "Name" }: FieldProps) => {
                     <Avatar src={record[source]} />
                 </div>
             );
-        return <div>
-            <Avatar>{getFirstLetters(record[emptyText])}</Avatar>
-        </div>;
+        else if (record[emptyText]) {
+            return <div>
+                <Avatar>{getFirstLetters(record[emptyText])}</Avatar>
+            </div>;
+        }
     }
     return null;
 };

@@ -34,7 +34,9 @@ const MeBox = ({ profile, groupColorText, building, room, name, churche }: MyPro
         </Box>)
 }
 
-const ScoreBox = ({ }) => {
+const ScoreBox = ({ groupId }: MyProfile) => {
+    const groupScore = useAppStoreState(state => state.groupScores)[String(groupId)];
+    const myScrore = useAppStoreState(state => state.myScore);
     return (<Box width="100%"
         justifyContent="space-around"
         padding="lg"
@@ -44,12 +46,12 @@ const ScoreBox = ({ }) => {
         flexDirection="row">
         <Box gap="md" alignItems="center">
             <AvatarIcon name="users" variant="primary.10" color="primary" />
-            <Text color="primary" fontWeight="heavy" variant="paragraphBase">1000</Text>
+            <Text color="primary" fontWeight="heavy" variant="paragraphBase">{groupScore || 0}</Text>
             <Text variant="paragraphSmall">Group Score</Text>
         </Box>
         <Box gap="md" alignItems="center">
             <AvatarIcon name="user" variant="primary.10" color="primary" />
-            <Text color="primary" fontWeight="heavy" variant="paragraphBase">100</Text>
+            <Text color="primary" fontWeight="heavy" variant="paragraphBase">{myScrore || 0}</Text>
             <Text variant="paragraphSmall">Your Score</Text>
         </Box>
     </Box>)
@@ -140,7 +142,7 @@ export const HomeScreen = () => {
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Box rowGap="2xl">
                         <MeBox {...me} />
-                        <ScoreBox />
+                        <ScoreBox {...me} />
                         <GroupBox />
                         <UpcommingBox />
                         <Button variant="filled"

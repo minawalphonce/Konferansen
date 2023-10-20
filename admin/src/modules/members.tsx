@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { FormControlLabel, useMediaQuery, IconButton, Card, CardContent, Stack, CardHeader, Button, Box, Grid, Checkbox } from '@mui/material';
+import { FormControlLabel, useMediaQuery, IconButton, Card, CardContent, Stack, CardHeader, Button, Box, Grid, Checkbox, TextField as MUITextField, Alert, AlertTitle, Typography } from '@mui/material';
 import ChurchIcon from '@mui/icons-material/Church';
+import AddIcon from '@mui/icons-material/Add';
 import CategoryIcon from '@mui/icons-material/LocalOffer';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import WcIcon from '@mui/icons-material/Wc';
@@ -8,10 +9,10 @@ import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import { SimpleListConfigurable, Labeled, DatagridConfigurable, List, TextField, SelectField, TopToolbar, SelectColumnsButton, SavedQueriesList, FilterLiveSearch, FilterList, FilterListItem, useTranslate, useRecordContext, Show, useGetIdentity } from 'react-admin';
 import { useNavigate } from "react-router-dom";
-import { AvatarField } from '../components/avatar';
 
+import { AvatarField } from '../components/avatar';
 import memory from "../assets/memory.json";
-import { updateMemory, subscibeToMemory } from "../providers";
+import { updateMemory, subscibeToMemory, addMemberScore, subscibeToMemberScoreCalculator } from "../providers";
 
 
 const ListActions = () => (
@@ -103,14 +104,15 @@ export const MemberList = () => {
     );
 }
 
-const ScoreAside = () => {
+
+const MemoryAside = () => {
     const record = useRecordContext();
     const { data } = useGetIdentity();
 
     const [todoList, setToDoList] = useState<string[]>([]);
 
     useEffect(() => {
-        if (record && data) {
+        if (record && record.Phone && data) {
             const unsubscribe = subscibeToMemory(record.Phone, (items) => {
                 setToDoList(items.map(i => i.memoryId));
             });
@@ -124,14 +126,17 @@ const ScoreAside = () => {
         updateMemory(record.Phone, memoryId, data?.fullName || "UNKNOWN", checked);
     }, [record, data]);
 
+    if (!record)
+        return null;
     return (
-        <Card>
-            <CardHeader title="Score +" />
+        <Card variant="outlined">
+            <CardHeader title="Memory" />
             <CardContent>
                 <Stack>
                     {memory.map((item) => {
                         return (
                             <FormControlLabel
+                                key={item.id}
                                 control={<Checkbox
                                     value={item.id}
                                     checked={todoList.includes(item.id)}
@@ -146,6 +151,72 @@ const ScoreAside = () => {
                 </Stack>
             </CardContent>
         </Card>
+    )
+}
+
+const SuccessAlert = () => {
+    return (
+        <Alert severity="success"
+            sx={{ zIndex: 9999999, position: "absolute", right: 0 }}>
+            <AlertTitle>Success</AlertTitle>
+            Message sent — <strong>check it out!</strong>
+        </Alert>
+    );
+}
+
+
+const ScoreAside = () => {
+    const [totalScore, setTotalScore] = useState(0);
+    const [score, setScore] = useState<string>("0");
+    const [showSuccess, setShowSuccess] = useState(false);
+    const record = useRecordContext();
+    const { data } = useGetIdentity();
+
+
+    useEffect(() => {
+        if (record && record.Phone && data) {
+            const unsb = subscibeToMemberScoreCalculator(record.Phone, (value) => {
+                setTotalScore(value);
+            });
+
+            return () => {
+                if (unsb)
+                    unsb();
+            }
+        }
+    }, [record, data])
+
+    if (!record || !data) {
+        return null;
+    }
+
+    const addHandler = async () => {
+        await addMemberScore(record.Phone, parseFloat(score), data.fullName!);
+        setShowSuccess(true);
+        setScore("0");
+        setTimeout(() => {
+            setShowSuccess(false);
+        }, 3000);
+    };
+
+    if (!record)
+        return null;
+    return (
+        <>
+            <Card sx={{ marginTop: 3, position: "relative" }} variant="outlined">
+                {showSuccess && <SuccessAlert />}
+                <CardHeader title="Score" />
+                <CardContent>
+                    <Stack>
+                        <Typography>Total Score: {totalScore}</Typography>
+                        <Stack direction="row">
+                            <MUITextField type="number" variant="outlined" label="Value" value={score} onChange={e => setScore(e.currentTarget.value)} />
+                            <Button endIcon={<AddIcon />} variant="contained" sx={{ margin: 1 }} onClick={addHandler}>Add</Button>
+                        </Stack>
+                    </Stack>
+                </CardContent>
+            </Card>
+        </>
     )
 }
 
@@ -165,7 +236,7 @@ export const ShowMember = () => {
                 <Grid item xs={12}>
                     <Grid container spacing={1}>
                         <Grid item xs={12} md={8}>
-                            <Card>
+                            <Card variant="outlined">
                                 <CardContent>
                                     <Stack gap={2} padding={4}>
                                         <Stack direction="row" alignItems="center" gap={1}  >
@@ -198,6 +269,7 @@ export const ShowMember = () => {
                             </Card>
                         </Grid>
                         <Grid item xs={12} md={4}>
+                            <MemoryAside />
                             <ScoreAside />
                         </Grid>
                     </Grid>

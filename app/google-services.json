@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "71813695116",
+    "project_id": "konferensen-platform",
+    "storage_bucket": "konferensen-platform.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71813695116:android:fe36db19f6e9057ad35da9",
+        "android_client_info": {
+          "package_name": "app.konferansen.kk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71813695116-o5tlhu7d1fektqaojdrkljc9qts55ts8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.konferansen.kk",
+            "certificate_hash": "daf07339dc462d5fedfeed12067bedf74628cdef"
+          }
+        },
+        {
+          "client_id": "71813695116-kjohjj785iknvfnplsbhb5ld1au58164.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3gnuH2Kiyf9UfqEsoNp8oUULBEDOfbbI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71813695116-kjohjj785iknvfnplsbhb5ld1au58164.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

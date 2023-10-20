@@ -6,7 +6,7 @@ import { useStoreRehydrated } from 'easy-peasy';
 
 import { AppThemeProvider } from '../theme';
 import { AppStoreProvider } from '../store';
-import { Firebase } from '../components';
+import { Firebase, Notifications } from '../components';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -55,6 +55,7 @@ function RootLayout() {
         <RootLayoutNav />
       </AppThemeProvider>
       <Firebase />
+      <Notifications />
     </AppStoreProvider>
   );
 }

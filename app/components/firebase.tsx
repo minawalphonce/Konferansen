@@ -4,11 +4,19 @@ import { useAppStoreActions, useAppStoreState } from "../store";
 export const Firebase = () => {
     const isAuthenticated = useAppStoreState(state => state.me !== null);
     const groupId = useAppStoreState(state => state.me?.groupId);
-    const [subscribeToSchedule, subscribeToProfile, subscribeToGroup, subscribeToMyMemory] = useAppStoreActions(actions => [
+    const [subscribeToSchedule,
+        subscribeToProfile,
+        subscribeToGroup,
+        subscribeToMyMemory,
+        subscribeToGroupsScore,
+        subscribeToMemberScore
+    ] = useAppStoreActions(actions => [
         actions.subscribeToSchedule,
         actions.subscribeToProfile,
         actions.subscribeToGroup,
-        actions.subscribeToMyMemory
+        actions.subscribeToMyMemory,
+        actions.subscribeToGroupsScore,
+        actions.subscribeToMemberScore
     ]);
 
     useEffect(() => {
@@ -16,12 +24,17 @@ export const Firebase = () => {
             const unsbSchedule = subscribeToSchedule();
             const unsubProfile = subscribeToProfile();
             const unsbMemory = subscribeToMyMemory();
-
+            const unsbGroupScores = subscribeToGroupsScore();
+            const unsbMemberScore = subscribeToMemberScore();
             return () => {
                 unsbSchedule();
                 unsubProfile();
                 if (unsbMemory)
                     unsbMemory();
+                if (unsbGroupScores)
+                    unsbGroupScores();
+                if (unsbMemberScore)
+                    unsbMemberScore();
             }
         }
     }, [isAuthenticated]);

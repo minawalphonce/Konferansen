@@ -5,9 +5,10 @@ import {
 } from "react-admin-firebase";
 import { TranslationMessages } from "react-admin";
 import { initializeApp } from "firebase/app";
+import { doc, collection, getFirestore, query, where, setDoc, onSnapshot, getDocs, deleteDoc } from "firebase/firestore";
+import { getFunctions, httpsCallable } from "firebase/functions";
 import "firebase/auth";
 import "firebase/storage";
-import { doc, collection, getFirestore, query, where, setDoc, onSnapshot, getDocs, deleteDoc } from "firebase/firestore";
 
 import polyglot18nProvider from "ra-i18n-polyglot";
 import en from "./en";
@@ -81,4 +82,54 @@ export const updateMemory = async (phone: string, memoryId: string, createdBy: s
         await deleteDoc(doc(collRef, docs.docs[0].id));
     }
 
+}
+
+export const addMemberScore = async (phone: string, value: number, createdBy: string) => {
+    const collRef = collection(getFirestore(firebaseApp), "MembersScoreLog");
+    await setDoc(doc(collRef), {
+        phone,
+        value,
+        createdBy,
+        createdOn: new Date()
+    });
+}
+
+export const subscibeToMemberScoreCalculator = (phone: string, callback: (amount: number) => void) => {
+    const collRef = collection(getFirestore(firebaseApp), "MembersScoreLog");
+    const queryRef = query(collRef, where("phone", "==", phone));
+    const unsb = onSnapshot(queryRef, (snapshot) => {
+        callback(snapshot.docs.reduce((total, doc) => total + doc.data().value, 0));
+    });
+    return unsb;
+}
+
+export const subscibeToGroupsScoreCalculator = (callback: (values: Record<string, number>) => void) => {
+    const collRef = collection(getFirestore(firebaseApp), "GroupsScoreLog");
+    const unsb = onSnapshot(collRef, (snapshot) => {
+        callback(snapshot.docs.reduce((totals, doc) => {
+            const { groupId, value } = doc.data();
+            totals[groupId] = (totals[groupId] || 0) + value;
+            return totals;
+        }, {} as Record<string, number>));
+    });
+    return unsb;
+}
+
+export const addGroupScore = async (groupId: number, value: number, createdBy: string) => {
+    const collRef = collection(getFirestore(firebaseApp), "GroupsScoreLog");
+    await setDoc(doc(collRef), {
+        groupId,
+        value,
+        createdBy,
+        createdOn: new Date()
+    });
+}
+
+const sendNotificationsProxy = httpsCallable(getFunctions(firebaseApp), "sendNotifications");
+export const sendNotifications = async (topic: "all" | 1 | 2 | 3 | 4 | 5, title: string, body: string) => {
+    await sendNotificationsProxy({
+        topic,
+        title,
+        body
+    });
 }

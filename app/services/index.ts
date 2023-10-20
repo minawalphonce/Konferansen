@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, query, where, collection, onSnapshot, getDocs, doc, getDoc, QuerySnapshot, DocumentSnapshot } from "firebase/firestore";
+import { getFirestore, query, where, collection, onSnapshot, getDocs, doc, getDoc, QuerySnapshot, DocumentSnapshot, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: process.env.EXPO_PUBLIC_apiKey,
@@ -72,10 +72,43 @@ const myMemory = (
     return unsb;
 }
 
+const memberScoreCalculator = (phone: string, callback: (amount: number) => void) => {
+    const collRef = collection(firestore, "MembersScoreLog");
+    const queryRef = query(collRef, where("phone", "==", phone));
+    const unsb = onSnapshot(queryRef, (snapshot) => {
+        callback(snapshot.docs.reduce((total, doc) => total + doc.data().value, 0));
+    });
+    return unsb;
+}
+
+const groupsScoreCalculator = (callback: (values: Record<string, number>) => void) => {
+    const collRef = collection(firestore, "GroupsScoreLog");
+    const unsb = onSnapshot(collRef, (snapshot) => {
+        callback(snapshot.docs.reduce((totals, doc) => {
+            const { groupId, value } = doc.data();
+            totals[groupId] = (totals[groupId] || 0) + value;
+            return totals;
+        }, {} as Record<string, number>));
+    });
+    return unsb;
+}
+
+
+const publishNotificationToken = async (phoneNumber: string, token: string) => {
+    const docRef = doc(firestore, "Tokens", phoneNumber);
+    await setDoc(docRef, {
+        Phone: phoneNumber,
+        ExpoToken: token
+    });
+}
+
 export {
     login,
     schedule,
     profile,
     group,
-    myMemory
+    myMemory,
+    memberScoreCalculator,
+    groupsScoreCalculator,
+    publishNotificationToken,
 }

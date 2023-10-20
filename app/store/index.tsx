@@ -31,14 +31,14 @@ export type Tarnima = {
     id: string,
     name: string,
 
-    formatedText: Record<string, (string | Record<string, string>[])[]> //lang : MD text
+    formatedText: (typeof taraneem)[0]["formatedText"];
     downloadLink?: string,
 }
 
 export type Memory = {
     id: string,
     title: string,
-    formatedText: Record<string, (string | Record<string, string>[])[]> //lang : MD text,
+    formatedText: (typeof memory)[0]["formatedText"]
 }
 
 // export type FoodMenuItem = {
@@ -83,11 +83,15 @@ type AppStoreModel = {
     memory: Memory[],
     group: Group | null,
     me: MyProfile | null,
+    groupScores: Record<string, number>,
+    myScore: number,
 
     updateSchedule: Action<AppStoreModel, ScheduleItem[] | null>,
     updateProfile: Action<AppStoreModel, MyProfile | null>,
     updateGroup: Action<AppStoreModel, Group["members"]>,
     updateMyMemory: Action<AppStoreModel, string[]>,
+    updateMyScore: Action<AppStoreModel, number>,
+    updateGroupsScore: Action<AppStoreModel, Record<string, number>>,
 
     login: Thunk<AppStoreModel, { phone: string, pin: number }>,
     logout: Thunk<AppStoreModel>,
@@ -95,7 +99,9 @@ type AppStoreModel = {
     subscribeToSchedule: Thunk<AppStoreModel, void, void, any, Unsubscribe>,
     subscribeToProfile: Thunk<AppStoreModel, void, void, any, Unsubscribe>,
     subscribeToGroup: Thunk<AppStoreModel, void, void, any, Unsubscribe | undefined>,
-    subscribeToMyMemory: Thunk<AppStoreModel, void, void, any, Unsubscribe | undefined>
+    subscribeToMyMemory: Thunk<AppStoreModel, void, void, any, Unsubscribe | undefined>,
+    subscribeToGroupsScore: Thunk<AppStoreModel, void, void, any, Unsubscribe | undefined>,
+    subscribeToMemberScore: Thunk<AppStoreModel, void, void, any, Unsubscribe | undefined>
 }
 const store = createStore<AppStoreModel>(
     persist(
@@ -106,6 +112,8 @@ const store = createStore<AppStoreModel>(
             memory: memory as Memory[],
             group: null,
             me: null,
+            groupScores: {},
+            myScore: 0,
 
             //#region [actions]
             updateSchedule: action((state, payload) => {
@@ -128,6 +136,12 @@ const store = createStore<AppStoreModel>(
             }),
             updateMyMemory: action((state, payload) => {
                 state.myMemory = payload
+            }),
+            updateGroupsScore: action((state, payload) => {
+                state.groupScores = payload;
+            }),
+            updateMyScore: action((state, payload) => {
+                state.myScore = payload
             }),
             //#endregion
 
@@ -219,14 +233,28 @@ const store = createStore<AppStoreModel>(
                         actions.updateMyMemory(items.map(i => i.memoryId));
                     });
                 }
+            }),
+            subscribeToGroupsScore: thunk((actions) => {
+                return services.groupsScoreCalculator(values => {
+                    actions.updateGroupsScore(values);
+                })
+            }),
+
+            subscribeToMemberScore: thunk((actions, _, helpers) => {
+                const phone = helpers.getState().me?.phone;
+                if (phone) {
+                    return services.memberScoreCalculator(phone, value => {
+                        actions.updateMyScore(value);
+                    })
+                }
             })
         },
         {
             "storage": storage,
-            "allow": ["me", "group"]
+            "allow": ["me", "group", "groupScores", "myScore"]
         }),
     {
-        version: 2,
+        version: 3,
         enhancers: [...storeEnhancers]
     });
 

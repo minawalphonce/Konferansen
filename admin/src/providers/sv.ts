@@ -15,6 +15,10 @@ export default {
                 'Are you sure you want to remove that item from your list of saved queries?',
             help: 'Filter the list and save this query for later',
         },
+        configurable: {
+            ...sv.ra.configurable,
+            customize: "customize"
+        }
     },
     resources: {
         "Members": {
@@ -42,7 +46,19 @@ export default {
             "female": "Tjej |||| Tjejer"
         },
         "notifications": "Aviseringar",
+        "score": "Poäng",
         "back": "Tillbaka",
-        "filters": "Sök"
+        "filters": "Sök",
+        "values": "Värderingar",
+        "teams": "Grupper",
+        "add": "Addera"
+    },
+    "teams": {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
     }
 }

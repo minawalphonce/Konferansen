@@ -26,6 +26,7 @@
     },
     "android": {
       "package": "app.konferansen.kk",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -55,7 +56,8 @@
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/ed481166-df45-47b6-9337-ce803514ab2d"
+      "url": "https://u.expo.dev/ed481166-df45-47b6-9337-ce803514ab2d",
+      "fallbackToCacheTimeout": 300000
     }
   }
 }
