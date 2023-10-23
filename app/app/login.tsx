@@ -5,17 +5,26 @@ import { useRouter } from "expo-router";
 import { Screen, Box, Image, Text, Form, TextField, SubmitField } from "../components";
 import { useAppStoreActions } from "../store";
 import { ScrollView } from "react-native-gesture-handler";
+import { useTranslate } from "react-polyglot";
+import { useMemo } from "react";
 
 const particleImg = require("../assets/images/partials.png")
-
-const loginForm = object({
-    "phone": string().required().matches(/[+]467\d{8}/, { "message": "phone number must start with +46" }),
-    "pin": number().integer().required()
-})
 
 function Login() {
     const login = useAppStoreActions(state => state.login);
     const router = useRouter();
+    const translate = useTranslate();
+
+    const loginForm = useMemo(() => {
+        return object({
+            "phone": string()
+                .required(translate("login.phoneRequiredMessage"))
+                .matches(/[+]467\d{8}/, translate("login.phoneFormatMessage")),
+            "pin": number()
+                .required(translate("login.pinRequired"))
+                .integer(translate("login.pinNumberMessage"))
+        });
+    }, [translate]);
     return (
         <Screen>
             <KeyboardAvoidingView>
@@ -25,7 +34,7 @@ function Login() {
                         <Box gap="2xl" width="100%">
                             <Box>
                                 <Text textAlign="center" variant="h4">
-                                    Identify yourself
+                                    {translate("login.title")}
                                 </Text>
                             </Box>
                             <Box gap="md">
@@ -35,11 +44,11 @@ function Login() {
                                     <SubmitField variant="round" onSubmit={async (values: { phone: string, pin: number }) => {
                                         const error = await login(values);
                                         if (error) {
-                                            alert(`Pin or phone number are not correct`)
+                                            alert(translate("login.invalidCredsMessage"))
                                         }
                                         else
                                             router.push("/(app)/(tabs)/(home)");
-                                    }}>Login</SubmitField>
+                                    }}>{translate("login.loginSubmitText")}</SubmitField>
                                 </Form>
                             </Box>
                         </Box>

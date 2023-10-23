@@ -2,6 +2,7 @@ import { Tabs } from "expo-router";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 
 import { Box, PressableBox, Text, Icon, IconProps } from "../../../components";
+import { useTranslate } from "react-polyglot";
 
 
 const appTabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
@@ -80,22 +81,23 @@ const tabBarIcon = (name: IconProps["name"]) => {
 }
 
 export default function TabLayout() {
+    const translate = useTranslate();
     return (
         <Tabs initialRouteName="home" screenOptions={{ headerShown: false }} tabBar={appTabBar}>
             <Tabs.Screen name="(home)" options={{
-                title: "Home",
+                title: translate("tabs.homeTab"),
                 tabBarIcon: tabBarIcon("home")
             }} />
             <Tabs.Screen name="schedule" options={{
-                title: "Schedule",
+                title: translate("tabs.scheduleTab"),
                 tabBarIcon: tabBarIcon("calendar")
             }} />
             <Tabs.Screen name="taraneem" options={{
-                title: "Taraneem",
-                tabBarIcon: tabBarIcon("headphones")
+                title: translate("tabs.taraneemTab"),
+                tabBarIcon: tabBarIcon("music")
             }} />
             <Tabs.Screen name="memory" options={{
-                title: "Memory",
+                title: translate("tabs.memoryTab"),
                 tabBarIcon: tabBarIcon("bookmark")
             }} />
         </Tabs>

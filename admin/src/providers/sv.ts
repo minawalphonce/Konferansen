@@ -14,11 +14,12 @@ export default {
             remove_message:
                 'Are you sure you want to remove that item from your list of saved queries?',
             help: 'Filter the list and save this query for later',
-        },
-        configurable: {
-            ...sv.ra.configurable,
-            customize: "customize"
-        }
+        }  // },
+        // configurable: {
+        //     ...sv.ra.configurable,
+        //     customize: "customize",
+        //     configureMode: "configure"
+        // }
     },
     resources: {
         "Members": {
@@ -54,11 +55,11 @@ export default {
         "add": "Addera"
     },
     "teams": {
-        "1": "1",
-        "2": "2",
-        "3": "3",
-        "4": "4",
-        "5": "5",
-        "6": "6",
+        "1": "Lila",
+        "2": "Grön",
+        "3": "Blå",
+        "4": "Orange",
+        "5": "Rosa",
+        "6": "Brun",
     }
 }

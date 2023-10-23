@@ -4,6 +4,7 @@ import { format, isWithinInterval } from "date-fns"
 
 import { Screen, Navbar, Text, Box, AvatarText, AvatarTextProps, Item } from "../../../../components";
 import { ScheduleItem, useAppStoreState } from "../../../../store";
+import { useTranslate } from "react-polyglot";
 
 const variantsList: AvatarTextProps["variant"][] = ["primary", "seconday", "tertiary1", "tertiary2"];
 
@@ -28,7 +29,8 @@ const ListItem = ({ from, to, details, index }: ScheduleItem & { index: number }
 }
 
 export const ScheduleScreen = () => {
-    const schedule = useAppStoreState(state => state.schedule);
+    const translate = useTranslate();
+    const schedule = useAppStoreState(state => state.schedule) || [];
     if (schedule.length <= 0)
         return;
     const soredDates = sortBy(schedule, s => s.from);
@@ -38,7 +40,7 @@ export const ScheduleScreen = () => {
     }))
 
     return (<Screen>
-        <Navbar title="Schedule" showLogo />
+        <Navbar title={translate("tabs.schedule.index.title")} showLogo />
         <SectionList
             showsVerticalScrollIndicator={false}
             stickySectionHeadersEnabled={false}

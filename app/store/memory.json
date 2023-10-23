@@ -1,7 +1,7 @@
 [
     {
         "id": "1",
-        "title": "مزمور ١٦/ Psalm 16",
+        "title": "مزمور ١٦ | Psalm 16",
         "formatedText": {
             "العربية": [
                 "احفظني يا الله لأني عليك توكلت",
@@ -33,7 +33,7 @@
     },
     {
         "id": "2",
-        "title": "مزمور ٤٦ / Psalm 46",
+        "title": "مزمور ٤٦ | Psalm 46",
         "formatedText": {
             "العربية": [
                 " اَللهُ لَنَا مَلْجَأٌ وَقُوَّةٌ. عَوْنًا فِي الضِّيْقَاتِ وُجِدَ شَدِيدًا.",
@@ -65,18 +65,23 @@
     },
     {
         "id": "3",
-        "title": "قلنسيح مع الملائكه",
+        "title": "فلنسبح مع الملائكه\nLåt oss lovsjunga med änglarna",
         "formatedText": {
             "العربية": [
                 "فلنسبح مع الملائكة قائلين: المجد لله في الأعالي وعلى الأرض السلام وفى الناس المسرة. نسبحك. نباركك. نخدمك. نسجد لك. نعترف لك. ننطق بمجدك. نشكرك من أجل عظم مجدك، أيها الرب المالك على السموات، الله الآب ضابط الكل، والرب الابن الواحد الوحيد يسوع المسيح، والروح القدس.",
                 "أيها الرب الإله، حمل الله، ابن الآب، رافع خطية العالم، ارحمنا. يا حامل خطية العالم، اقبل طلباتنا إليك. أيها الجالس عن يمين أبيه، ارحمنا. أنت وحدك القدوس. أنت وحدك العالي يا ربى يسوع المسيح والروح القدس. مجدا لله الآب أمين.",
                 "أباركك كل يوم، وأسبح اسمك القدوس إلى الأبد. وإلى أبد الأبد. أمين. منذ الليل روحي تبكر إليك يا إلهي، لأن أوامرك هي نور على الأرض. كنت أتلو في طرقك، لأنك صرت لي معينا. باكرا يا رب تسمع صوتي، بالغداة أقف أمامك وتراني."
+            ],
+            "svenska": [
+                "Låt oss lovsjunga med änglarna, sägande: Förhärligad är Gud i höjden, frid på jorden och människorna till ett gott behag, Vi prisar dig, vi välsignar dig, vi tjänar dig , vi tillbeder dig, vi bekänner oss till dig, vi uttalar din härlighet. Vi tackar dig för din stora härlighets skull, o Herre, konung i himlarna , Gud Fader, Pantokrator och Herren, den enfödde sonen Jesus Kristus, och den helige Ande.",
+                "O Herre Gud, Guds lamm, Faderns son, som bär världens synd, förbarma dig över oss.  Du som bär världens synd, mottag våra böner. Du som sitter på Faderns högra sida, förbarma dig över oss. Du, som allena är helig, du som allena är upphöjd, o Herre Jesus Kristus; och helige Ande; förhärligad är Gud , Fadern.  Amen.",
+                "Jag välsignar dig varje dag och lovsjunger ditt heliga namn till evighet och till evigheternas evighet.  Amen. Sedan natten hastar min själ  till dig, o min Gud, därför att dina bud är ett ljus över jorden. Jag lovsjunger ständigt dina vägar, därför att du har blivit min hjälpare.  Lyssna, Herre, bittida till min röst; tidigt om morgonen står jag inför dig och du ser mig."
             ]
         }
     },
     {
         "id": "4",
-        "title": "تفضل يا رب أن تحفظنا",
+        "title": "تفضل يا رب أن تحفظنا\nVar god, Herre",
         "formatedText": {
             "العربية": [
                 "تفضَّلْ يا رَبُّ أنْ تَحْفَظَنا فى هَذِه اللَّيْلةِ بِغَيرِ خَطيَّةٍ. مُبارِكٌ أَنْتَ أيُّها الرَّبُّ إلهُ آبائِنا ومُتَزايدٌ بَرَكةً،",
@@ -101,6 +106,208 @@
                 "låt din barmhärtighet komma till dem som känner dig och din sanning till dem som har rättrågiga hjärtan. Ty dig är tillbördig välsignelse, åt dig värdigas lovsång, ",
                 "för dig höves härlighet; o Fadern, Sonen och den helige Ande, som är från begynnelsen, nu och till evigheternas evighet. Amen.",
                 "Det är gott att bekänna till Herren och att prisa ditt namn, du Högste, din barmhärtighet förkunnas om morgonen och dina rätter varje natt."
+            ]
+        }
+    },
+    {
+        "id": "5",
+        "title": "انجيل متي ( ٥: ١-١٦)\nMatteusevangeliet (5: 1-16)",
+        "formatedText": {
+            "العربية": [
+                "ولما رأى الجموع صعد إلى الجبل، فلما جلس تقدم إليه تلاميذه",
+                "ففتح فاه وعلمهم قائلا",
+                "طوبى للمساكين بالروح، لأن لهم ملكوت السماوات",
+                "طوبى للحزانى، لأنهم يتعزون",
+                "طوبى للودعاء، لأنهم يرثون الأرض",
+                "طوبى للجياع والعطاش إلى البر، لأنهم يشبعون",
+                "طوبى للرحماء، لأنهم يرحمون",
+                "طوبى للأنقياء القلب ، لأنهم يعاينون الله",
+                "طوبى لصانعي السلام ، لأنهم أبناء الله يدعون",
+                "طوبى للمطرودين من أجل البر، لأن لهم ملكوت السماوات",
+                "طوبى لكم إذا عيروكم وطردوكم وقالوا عليكم كل كلمة شريرة، من أجلي، كاذبين",
+                "افرحوا وتهللوا، لأن أجركم عظيم في السماوات، فإنهم هكذا طردوا الأنبياء الذين قبلكم",
+                "أنتم ملح الأرض، ولكن إن فسد الملح فبماذا يملح؟ لا يصلح بعد لشيء، إلا لأن يطرح خارجا ويداس من الناس",
+                "أنتم نور العالم. لا يمكن أن تخفى مدينة موضوعة على جبل",
+                "ولا يوقدون سراجا ويضعونه تحت المكيال، بل على المنارة فيضيء لجميع الذين في البيت",
+                "فليضئ نوركم هكذا قدام الناس، لكي يروا أعمالكم الحسنة، ويمجدوا أباكم الذي في السماوات"
+            ],
+            "svenska": [
+                "När Jesus såg folkskarorna gick han upp på berget. Han satte sig ner, och hans lärjungar kom fram till honom.",
+                "Då började han tala och undervisa dem:",
+                "\"Saliga är de som är fattiga i anden, för dem tillhör himmelriket.",
+                "Saliga är de som sörjer, för de ska bli tröstade.",
+                "Saliga är de ödmjuka, för de ska ärva jorden.",
+                "Saliga är de som hungrar och törstar efter rättfärdighet, för de ska bli mättade.",
+                "Saliga är de barmhärtiga, för de ska få barmhärtighet.",
+                "Saliga är de renhjärtade, för de ska se Gud.",
+                "Saliga är de som skapar frid, för de ska kallas Guds barn.",
+                "Saliga är de som blir förföljda för rättfärdighetens skull, för dem tillhör himmelriket.",
+                "Saliga är ni när människor hånar och förföljer er och ljuger och säger allt möjligt ont om er för min skull.",
+                "Gläd er och jubla, för er lön är stor i himlen. På samma sätt förföljde man profeterna före er.",
+                "Ni är jordens salt. Men om saltet förlorar sin sälta, hur ska man då få det salt igen? Det duger inte till annat än att kastas ut och trampas ner av människorna.",
+                "Ni är världens ljus. En stad som ligger på ett berg kan inte döljas.",
+                "Och man tänder inte ett ljus och sätter det under skäppan, utan man sätter det på hållaren så att det lyser för alla i huset.",
+                "På samma sätt ska ert ljus lysa för människorna, så att de ser era goda gärningar och prisar er Far i himlen."
+            ]
+        }
+    },
+    {
+        "id": "6",
+        "title": "صلاة الساعة الثالثة - القطعة الأولى\nTredje timmen - Din helige Ande...",
+        "formatedText": {
+            "العربية": [
+                "روحُكَ القُدُّوسُ يارَبُّ الَّذي أرْسَلتَهُ عَلًى تَلاميذِكَ القدّيسينَ ورُسُلِكَ المكرَّمينَ فِي السّاعةِ الثّالثةِ، هَذا لا تَنْزعُه مِنّا أيُّها الصّالحُ. لَكِن جَدِّدهُ فِي أحْشائِنا",
+                "قَلباً نَقياً اخْلِقُ فِيَّ يا اللَّهُ وروحاً مُسْتَقيماً جَدِّد فِي أحْشائي. لا تَطْرحني مِنْ قُدّام وَجْهكَ، وروحكَ القُدُّوس لا تَنْزَعهُ مِنِّي."
+            ],
+            "svenska": [
+                "Din helige Ande, Herre, som du sände över dina heliga lärjungar och dina ärade apostlar i den tredje timmen; tag inte ifrån oss, o Gode, men förnya honom i oss.",
+                "Skapa i mig, Gud, ett rent hjärta och förnya visshetens ande i mig. Förkasta mig icke från ditt ansikte, och tag inte din helige Ande ifrån mig."
+            ]
+        }
+    },
+    {
+        "id": "7",
+        "title": "صلاة الساعة الثالثة - القطعة الثانية\nTredje timmen - Herre, du som sände...",
+        "formatedText": {
+            "العربية": [
+                "أيُّها الرَّبُّ الَّذي أرْسَلتَ روحَ قُدْسِكَ عَلَى تَلاميذِكَ القدِّيسينَ ورُسُلِكَ المكَرَّمينَ فِي السّاعَةِ الثّالِثَة، هَذا لا تَنْزعهُ مِنّا أيُّها الصّالحُ. ",
+                "لَكِن نَسْألكَ أنْ تُجدِّدَه فِي أحْشائِنَا يَا ربَّنا يَسوعَ المسيحَ ابنَ اللَّهِ الكَلمَة. ",
+                "روحاً مُسْتَقيماً ومُحْيياً، رُوحَ النُـبوَّةِ والعفَّةِ، رُوحَ القَداسَةِ والعَدالةِ والسُّلطةِ، أيُّها القادرُ عَلَى كُلِّ شَئٍ لأنَّكَ أنْتَ هُوَ ضِياءُ نُفوسِنَا. يامَنْ يُضئ لِكُلِّ إنْسانٍ آتٍ إلَى العالَمِ ارْحَمْنَا"
+            ],
+            "svenska": [
+                "Herre, du som sände din helige Ande över dina heliga lärjungar och dina ärade apostlar i den tredje timmen; tag honom inte ifrån oss, o Gode.",
+                "Men vi ber dig, vår herre Jesus Kristus, Ordet, Guds son, att förnya honom i oss:",
+                "en livgivande och visshetens ande, en kysk och profetens ande; en mäktig, rättfärdig och helighetens ande, o Du som förmår allt. Ty du är våra  själars ljus; du som ger ljus åt varje människa som kommer i världen; förbarma dig över oss."
+            ]
+        }
+    },
+    {
+        "id": "8",
+        "title": "صلاة الساعة الثالثة - القطعة الثالثة\nTredje timmen - O Guds Moder...",
+        "formatedText": {
+            "العربية": [
+                "يا والدةَ الإلَهِ أنْتِ هى الكَرْمةُ الحَقيقيَّةُ الحامِلةُ عنْقودَ الحَياة، نَسْألُكِ أيَّتُها الممْتَلئةُ نِعمةً مَعَ الرُّسلِ مِنْ أجْلِ خَلاصِ نُفُوسِنا.",
+                "مُبارَكٌ الرَّبُّ إلهُنا. مُبارَكٌ الرَّبُّ يَوماً فَيوْماً يُهيِّئ طَريقَنا لأنَّهُ إلهُ خَلاصِنا."
+            ],
+            "svenska": [
+                "O Guds Moder, du är det sanna vinträdet som bär livets klase. Vi bönfaller dig, full av nåd, och apostlarna, att be för våra själars frälsning. Välsignad är vår Herre, vår Gud.",
+                "Välsignad är Herren dag för dag, han bereder våra vägar, ty han är vår frälsnings Gud."
+            ]
+        }
+    },
+    {
+        "id": "9",
+        "title": "صلاة الساعة الثالثة - القطعة الرابعة\nTredje timmen - O Parakleten, himmelske konung...",
+        "formatedText": {
+            "العربية": [
+                "أيُّها الملِكُ السَّمائيُّ المعزِّي، رُوحُ الحَقِّ الحاضِرُ فِي كُلِّ مَكانٍ والْمالئ الكلّ، كَنْز الصالحات ومُعْطي الحَياةهَلمَّ تَفَضَّلْ وحل فينَا.",
+                "وطَهِّرنَا مِنْ كلِّ دَنَسٍ أيُّها الصّالحُ وخلِّصْ نُفوسَنا."
+            ],
+            "svenska": [
+                "O Parakleten, himmelske konung, sanningens ande, som är överallt och uppfyller allting. Det godas skatt och livets givare; kom och  värdigas vara i oss.",
+                "Rena oss från all befläckelse, o Gode, o fräls våra själar."
+            ]
+        }
+    },
+    {
+        "id": "10",
+        "title": "صلاة الساعة الثالثة - القطعة الخامسة\nTredje timmen - Såsom du varit med dina lärjungar",
+        "formatedText": {
+            "العربية": [
+                "كَما كُنْتَ مَعَ تَلامِيذِكَ أيُّها المخَلِّصُ وأعْطَيتَهمُ السَّلام، هَلمَّ أيْضاً كُنْ مَعنَا وامنَحنا سلامَكَ وخَلِّصنا وَنَجِّ نُفوسَنا"
+            ],
+            "svenska": [
+                "Såsom du varit med dina lärjungar, o Frälsare, och givit dem frid, så kom även och var med oss och skänk oss din frid; och fräls oss och rädda våra själar."
+            ]
+        }
+    },
+    {
+        "id": "11",
+        "title": "صلاة الساعة الثالثة - القطعة السادسة\nNär vi än står...",
+        "formatedText": {
+            "العربية": [
+                " إذا ما وقَفْنا فِي هَيْكلِك المقَدَّسِ نُحْسب كالقِيامِ فِي السَّماءِ. يا والدةَ الإلَه أنتِ هى بابُ السَّماء، افْتَحي لَنا بابَ الرَّحْمَة."
+            ],
+            "svenska": [
+                "När vi än står inför ditt heliga altare, räkna oss till dem som står i himlen. O Gudaföderska, Du är himmelens port; öppna för oss barmhärtighetens dörr."
+            ]
+        }
+    },
+    {
+        "id": "12",
+        "title": "مزمور ٩١ | Psalm 91",
+        "formatedText": {
+            "العربية": [
+                "الساكن في ستر العلي ، في ظل القدير يبيت",
+                "أقول للرب: ملجإي وحصني. إلهي فأتكل عليه",
+                "لأنه ينجيك من فخ الصياد ومن الوبإ الخطر",
+                "بخوافيه يظللك، وتحت أجنحته تحتمي. ترس ومجن حقه",
+                "لا تخشى من خوف الليل، ولا من سهم يطير في النهار",
+                "ولا من وبإ يسلك في الدجى، ولا من هلاك يفسد في الظهيرة",
+                "يسقط عن جانبك ألف، وربوات عن يمينك. إليك لا يقرب",
+                "إنما بعينيك تنظر وترى مجازاة الأشرار",
+                "لأنك قلت: أنت يارب ملجإي. جعلت العلي مسكنك",
+                "لا يلاقيك شر، ولا تدنو ضربة من خيمتك",
+                "لأنه يوصي ملائكته بك لكي يحفظوك في كل طرقك",
+                "على الأيدي يحملونك لئلا تصدم بحجر رجلك",
+                "على الأسد والصل تطأ . الشبل والثعبان تدوس",
+                "لأنه تعلق بي أنجيه . أرفعه لأنه عرف اسمي",
+                "يدعوني فأستجيب له، معه أنا في الضيق، أنقذه وأمجده",
+                "من طول الأيام أشبعه ، وأريه خلاصي"
+            ],
+            "svenska": [
+                "Den som sitter under den Högstes beskydd och vilar under den Allsmäktiges skugga,",
+                "han säger till Herren: \"Min tillflykt och min borg, min Gud som jag litar på.\"",
+                "Han ska rädda dig från jägarens snara och den härjande pesten.",
+                "Med sina fjädrar täcker han dig, under hans vingar finner du tillflykt. Hans trofasthet är sköld och skärm.",
+                "Du ska inte frukta nattens fasor, inte pilen som flyger om dagen,",
+                "inte pesten som smyger i mörkret eller sjukdomen som härjar mitt på dagen.",
+                "Tusen kan falla vid din sida, tiotusen vid din högra sida, men dig drabbar det inte.",
+                "Du ska bara se det med egna ögon, bevittna hur de gudlösa får sitt straff.",
+                "Du har sagt att Herren är ditt skydd, du har gjort den Högste till din tillflykt.",
+                "Inget ont ska drabba dig, ingen plåga närma sig din hydda,",
+                "för han ska befalla sina änglar att bevara dig på alla dina vägar.",
+                "De ska bära dig på sina händer så att du inte stöter din fot mot någon sten.",
+                "Du ska gå fram över lejon och huggormar, trampa på unga lejon och drakar.",
+                "\"Han älskar mig, därför ska jag befria honom, och jag ska beskydda honom eftersom han känner mitt namn.",
+                "Han ropar till mig och jag svarar honom. Jag är med honom i nöden, jag ska rädda honom och ge honom ära.",
+                "Jag ska mätta honom med långt liv och låta honom se min frälsning.\""
+            ]
+        }
+    },
+    {
+        "id": "13",
+        "title": "انجيل متي (٢٥: ١ - ١٣)\nMatteusevangeliet (25: 1-13)",
+        "formatedText": {
+            "العربية": [
+                "«حينئذ يشبه ملكوت السماوات عشر عذارى، أخذن مصابيحهن وخرجن للقاء العريس.",
+                "وكان خمس منهن حكيمات، وخمس جاهلات.",
+                "أما الجاهلات فأخذن مصابيحهن ولم يأخذن معهن زيتا،",
+                "وأما الحكيمات فأخذن زيتا في آنيتهن مع مصابيحهن.",
+                "وفيما أبطأ العريس نعسن جميعهن ونمن.",
+                "ففي نصف الليل صار صراخ: هوذا العريس مقبل، فاخرجن للقائه!",
+                "فقامت جميع أولئك العذارى وأصلحن مصابيحهن.",
+                "فقالت الجاهلات للحكيمات: أعطيننا من زيتكن فإن مصابيحنا تنطفئ.",
+                "فأجابت الحكيمات قائلات: لعله لا يكفي لنا ولكن، بل اذهبن إلى الباعة وابتعن لكن.",
+                "وفيما هن ذاهبات ليبتعن جاء العريس، والمستعدات دخلن معه إلى العرس، وأغلق الباب.",
+                "أخيرا جاءت بقية العذارى أيضا قائلات: يا سيد، يا سيد، افتح لنا!",
+                "فأجاب وقال: الحق أقول لكن: إني ما أعرفكن.",
+                "فاسهروا إذا لأنكم لا تعرفون اليوم ولا الساعة التي يأتي فيها ابن الإنسان."
+            ],
+            "svenska": [
+                "Då ska himmelriket bli som när tio jungfrur tog sina lampor och gick ut för att möta brudgummen.",
+                "Fem av dem var oförståndiga och fem var kloka.",
+                "De oförståndiga tog sina lampor men tog inte med sig någon olja,",
+                "medan de kloka tog olja i kärlen tillsammans med sina lampor.",
+                "När brudgummen dröjde blev de alla dåsiga och somnade.",
+                "Vid midnatt hördes ett rop: Brudgummen är här! Gå ut och möt honom!",
+                "Då vaknade alla jungfrurna och gjorde i ordning sina lampor.",
+                "De oförståndiga sade till de kloka: Ge oss av er olja, våra lampor slocknar!",
+                "De kloka svarade: Den skulle inte räcka både till oss och till er. Gå i stället till dem som säljer och köp.",
+                "Men när de hade gått i väg för att köpa kom brudgummen, och de som var redo gick med honom in till bröllopsfesten. Och dörren stängdes.",
+                "Till slut kom de andra jungfrurna tillbaka och sade: Herre, Herre, öppna för oss!",
+                "Men han svarade: Jag säger er sanningen: Jag känner er inte.",
+                "Håll er därför vakna, för ni vet inte vilken dag eller timme han kommer."
             ]
         }
     }

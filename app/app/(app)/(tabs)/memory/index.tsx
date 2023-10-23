@@ -2,6 +2,7 @@ import { FlatList } from "react-native";
 import { router } from "expo-router";
 import { Box, Icon, Item, Navbar, Screen, Text } from "../../../../components";
 import { Memory, useAppStoreState } from "../../../../store";
+import { useTranslate } from "react-polyglot";
 
 
 const ListItem = ({ id, title }: Memory) => {
@@ -32,9 +33,10 @@ const ListItem = ({ id, title }: Memory) => {
 
 export const MemoryScreen = () => {
     const memory = useAppStoreState(state => state.memory);
+    const translate = useTranslate();
     return (
         <Screen>
-            <Navbar title="Memory" showLogo />
+            <Navbar title={translate("tabs.memory.index.title")} showLogo />
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={memory}

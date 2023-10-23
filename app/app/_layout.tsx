@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import { Slot, SplashScreen, Stack } from 'expo-router';
+import { Slot, SplashScreen } from 'expo-router';
 import { useFonts } from 'expo-font';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useStoreRehydrated } from 'easy-peasy';
 
+import { TranslationProvider } from "../translations";
 import { AppThemeProvider } from '../theme';
 import { AppStoreProvider } from '../store';
 import { Firebase, Notifications } from '../components';
@@ -51,9 +52,11 @@ function RootLayout() {
   //storage.clearAllData().then(storage.getAll);
   return (
     <AppStoreProvider>
-      <AppThemeProvider>
-        <RootLayoutNav />
-      </AppThemeProvider>
+      <TranslationProvider>
+        <AppThemeProvider>
+          <RootLayoutNav />
+        </AppThemeProvider>
+      </TranslationProvider>
       <Firebase />
       <Notifications />
     </AppStoreProvider>

@@ -32,7 +32,7 @@ export const ProfilePicture = ({ name, pictureUrl, ...rest }: ProfilePictureProp
         const varColor = colors[random(0, 3)];
         return (
             <Box backgroundColor={varColor} justifyContent='center' alignItems='center' aspectRatio={1} {...rest}>
-                <Text variant="displayLarge" color="action.primary.inverted" fontWeight="heavy" >{getFirstLetters(name)}</Text>
+                <Text variant="h4" color="action.primary.inverted" fontWeight="heavy" >{getFirstLetters(name)}</Text>
             </Box>);
     }
 }

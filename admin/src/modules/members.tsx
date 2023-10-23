@@ -38,14 +38,19 @@ const FilterSidebar = () => {
                 <FilterLiveSearch source='Name' />
                 <FilterList label={translate("resources.Members.fields.Churche")} icon={<ChurchIcon />}>
                     <FilterListItem label="St Mina" value={{ Churche: 'St Mina' }} />
-                    <FilterListItem label="St Marcus" value={{ Churche: 'St Marcus' }} />
+                    <FilterListItem label="St Marc" value={{ Churche: 'St Marc' }} />
                     <FilterListItem label="St Mary" value={{ Churche: 'St Mary' }} />
                     <FilterListItem label="St Paula" value={{ Churche: 'St Paula' }} />
                     <FilterListItem label="St George" value={{ Churche: 'St George' }} />
+                    <FilterListItem label="Arch Mickeal" value={{ Churche: 'Arch Mickeal' }} />
                 </FilterList>
                 <FilterList label={translate("resources.Members.fields.Group")} icon={<CategoryIcon />}>
-                    <FilterListItem label="Lila" value={{ Group: 'lila' }} />
-                    <FilterListItem label="Grön" value={{ Group: 'Grön' }} />
+                    <FilterListItem label={translate("teams.1")} value={{ GroupId: 1 }} />
+                    <FilterListItem label={translate("teams.2")} value={{ GroupId: 2 }} />
+                    <FilterListItem label={translate("teams.3")} value={{ GroupId: 3 }} />
+                    <FilterListItem label={translate("teams.4")} value={{ GroupId: 4 }} />
+                    <FilterListItem label={translate("teams.5")} value={{ GroupId: 5 }} />
+                    <FilterListItem label={translate("teams.6")} value={{ GroupId: 6 }} />
                 </FilterList>
                 <FilterList label={translate("resources.Members.fields.Gender")} icon={<WcIcon />}>
                     <FilterListItem label={translate("common.gender.male", { smart_count: 10 })} value={{ Gender: 'M' }} />
