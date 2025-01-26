@@ -1,0 +1,21 @@
+{
+  "name": "konferensen",
+  "packageManager": "yarn@1.22.1",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "devDependencies": {
+    "turbo": "^2.3.3"
+  },
+  "scripts": {
+    "admin:dev": "turbo @konferensen/admin#dev",
+    "app:dev": "turbo @konferensen/app#dev",
+    "admin": "yarn workspace @konferensen/admin",
+    "ui": "yarn workspace @konferensen/ui",
+    "query": "yarn workspace @konferensen/query"
+  }
+}

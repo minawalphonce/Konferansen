@@ -1,0 +1,11 @@
+{
+  "name": "@konferensen/ui",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "author": "Mina W Alphonce",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@shopify/restyle": "^2.4.4"
+  }
+}

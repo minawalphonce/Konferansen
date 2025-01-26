@@ -1,0 +1,8 @@
+{
+  "name": "@konferensen/query",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "author": "Mina W Alphonce",
+  "license": "MIT",
+  "private": true
+}

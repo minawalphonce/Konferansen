@@ -1,0 +1,76 @@
+{
+  "expo": {
+    "name": "Konferensen",
+    "slug": "Konferansen",
+    "owner": "koptisk-ortodoxa-kyrkan",
+    "version": "1.3.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "konf",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "config": {
+        "usesNonExemptEncryption": false,
+      },
+      "supportsTablet": false,
+      "bundleIdentifier": "app.konferansen.kk",
+      "buildNumber": "1"
+    },
+    "android": {
+      "versionCode": 4,
+      "package": "app.konferansen.kk",
+      "googleServicesFile": "./google-services.json",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "sentry-expo",
+      "expo-localization"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "ed481166-df45-47b6-9337-ce803514ab2d"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/ed481166-df45-47b6-9337-ce803514ab2d",
+      "fallbackToCacheTimeout": 300000
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "koptiska-ortodoxa-kyrka",
+            "project": "konferensen"
+          }
+        }
+      ]
+    }
+  }
+}

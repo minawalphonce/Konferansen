@@ -1,0 +1,56 @@
+{
+  "cli": {
+    "version": ">= 5.4.0"
+  },
+  "build": {
+    "development": {
+      "channel": "dev",
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_apiKey": "AIzaSyBQte9kRegyfmoF4ch5ZVwk7M9WoOwlsXY",
+        "EXPO_PUBLIC_authDomain": "konferensen-platform.firebaseapp.com",
+        "EXPO_PUBLIC_projectId": "konferensen-platform",
+        "EXPO_PUBLIC_storageBucket": "konferensen-platform.appspot.com",
+        "EXPO_PUBLIC_messagingSenderId": "71813695116",
+        "EXPO_PUBLIC_appId": "1:71813695116:web:3c8a6e32962848bed35da9",
+        "EXPO_PUBLIC_measurementId": "G-WST80ZJCH9",
+        "SENTRY_AUTH_TOKEN": "df0def3241211ca7b1d5c3f43056b467d140dfb10518c94ca0076d37e3440dfe"
+      }
+    },
+    "preview": {
+      "channel": "preview",
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_apiKey": "AIzaSyBQte9kRegyfmoF4ch5ZVwk7M9WoOwlsXY",
+        "EXPO_PUBLIC_authDomain": "konferensen-platform.firebaseapp.com",
+        "EXPO_PUBLIC_projectId": "konferensen-platform",
+        "EXPO_PUBLIC_storageBucket": "konferensen-platform.appspot.com",
+        "EXPO_PUBLIC_messagingSenderId": "71813695116",
+        "EXPO_PUBLIC_appId": "1:71813695116:web:3c8a6e32962848bed35da9",
+        "EXPO_PUBLIC_measurementId": "G-WST80ZJCH9",
+        "SENTRY_AUTH_TOKEN": "df0def3241211ca7b1d5c3f43056b467d140dfb10518c94ca0076d37e3440dfe"
+      }
+    },
+    "production": {
+      "channel": "prod",
+      "env": {
+        "EXPO_PUBLIC_apiKey": "AIzaSyBQte9kRegyfmoF4ch5ZVwk7M9WoOwlsXY",
+        "EXPO_PUBLIC_authDomain": "konferensen-platform.firebaseapp.com",
+        "EXPO_PUBLIC_projectId": "konferensen-platform",
+        "EXPO_PUBLIC_storageBucket": "konferensen-platform.appspot.com",
+        "EXPO_PUBLIC_messagingSenderId": "71813695116",
+        "EXPO_PUBLIC_appId": "1:71813695116:web:3c8a6e32962848bed35da9",
+        "EXPO_PUBLIC_measurementId": "G-WST80ZJCH9",
+        "SENTRY_AUTH_TOKEN": "df0def3241211ca7b1d5c3f43056b467d140dfb10518c94ca0076d37e3440dfe"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascAppId": "6468422675"
+      }
+    }
+  }
+}
