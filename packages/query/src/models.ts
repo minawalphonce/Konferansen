@@ -1,15 +1,15 @@
 import { Timestamp } from 'firebase/firestore';
 
-// User Types
-export type UserRole = 'member' | 'admin';
-export type UserGender = 'male' | 'female';
-export type UserGrade = '10th' | '11th' | '12th';
+// Members Types
+export type MemberRole = 'member' | 'admin';
+export type MemberGender = 'male' | 'female';
+export type MemberGrade = '10th' | '11th' | '12th' | "graduated" | "aadmin";
 
-export interface User {
+export interface Member {
     id: string;
     name: string;
-    gender: UserGender;
-    grade: UserGrade;
+    gender: MemberGender;
+    grade: MemberGrade;
     phone: string;
     personalNumber?: string;
     groupId: string | null;
@@ -17,7 +17,7 @@ export interface User {
     totalScore: number;        // Combined score
     totalIndividualScore: number;  // Personal achievements
     totalTeamScore: number;    // Group contribution scores
-    role: UserRole;
+    role: MemberRole;
     fcmToken?: string;
     nfcTagId?: string;
     lastActive: Timestamp;
@@ -82,7 +82,7 @@ export interface Room {
     id: string;
     name: string;
     capacity: number;
-    gender: UserGender;
+    gender: MemberGender;
     occupants: string[];  // Array of user IDs
     createdAt: Timestamp;
     updatedAt: Timestamp;
